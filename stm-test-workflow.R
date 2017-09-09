@@ -64,10 +64,10 @@ poliblogPrevFit <- stm(out$documents, out$vocab, K=20, prevalence=~rating+s(day)
 # ----------------------------------------
 
 # SEARCH AND SELECT MODEL FOR A FIXED NUMBER OF TOPICS.
-# The function 'selectModel' automates the process of finding and selecting a model
-# with desirable properties in both semantic coherence and exclusivity dimensions 
-# (e.g., models with average scores towards the upper right side of the plot). STM
-# will compare a number of models side by side and will keep the models that do not 
+# The function 'selectModel' assists the user in finding and selecting a model with
+# desirable properties in both semantic coherence and exclusivity dimensions (e.g.,
+# models with average scores towards the upper right side of the plot). STM will
+# compare a number of models side by side and will keep the models that do not 
 # converge quickly. 
 poliblogSelect <- selectModel(out$documents, out$vocab, K=20, prevalence=~rating+s(day),
                               max.em.its=75, data=meta, runs=20, seed=8458159)
