@@ -7,10 +7,8 @@ A Structural Topic Model is a general framework for topic modeling with document
 ## Projects
 Below is a list that describes my research projects using structural topic modeling:
 
-### 0. Test Project.
-This is technically not my own research project but my first exercise to learn and understand structural topic modeling using the `stm` R package [(Roberts et al. 2017a)](#roberts_etal_2017a). I followed the instructions from the `stm` package [vignette](https://github.com/bstewart/stm/blob/master/inst/doc/stmVignette.pdf?raw=true), which contains a short technical overview of structural topic models, and a demonstration of the basic usage of the package through examples of the functions used in a typical workflow. 
-
-The original links to the datasets for the examples can be found in the vignette.  
+### 0. Test Project
+This is technically not my own research project but my first exercise to learn and understand structural topic modeling using the `stm` R package [(Roberts et al. 2017a)](#roberts_etal_2017a). I followed the instructions from the `stm` package [vignette](https://github.com/bstewart/stm/blob/master/inst/doc/stmVignette.pdf?raw=true), which contains a short technical overview of structural topic models, and a demonstration of the basic usage of the package through examples of the functions used in a typical workflow. I copied the datasets used in the vignette in the test project folder of this repository for eaasy replication. The original links to the example datasets can be found in the vignette. Also, I used the scripts from Nick B. Adams' [D-Lab Text Analysis Working Group](https://github.com/nickbadams/D-Lab_TextAnalysisWorkingGroup) with some minor modifications for this learning exercise.
 
 ## References
 
