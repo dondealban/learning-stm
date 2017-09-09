@@ -65,8 +65,10 @@ poliblogPrevFit <- stm(out$documents, out$vocab, K=20, prevalence=~rating+s(day)
 
 # SEARCH AND SELECT MODEL FOR A FIXED NUMBER OF TOPICS.
 # The function 'selectModel' automates the process of finding and selecting a model
-# with desirable properties. STM will compare a number of models side by side and will 
-# keep the models that do not converge quickly. 
+# with desirable properties in both semantic coherence and exclusivity dimensions 
+# (e.g., models with average scores towards the upper right side of the plot). STM
+# will compare a number of models side by side and will keep the models that do not 
+# converge quickly. 
 poliblogSelect <- selectModel(out$documents, out$vocab, K=20, prevalence=~rating+s(day),
                               max.em.its=75, data=meta, runs=20, seed=8458159)
 
@@ -78,6 +80,7 @@ dev.off()
 
 # Each STM has semantic coherence and exclusivity values associated with each topic. 
 # The topicQuality' fucntion plots these values and labels each with its topic number.
+# Save plot as pdf file.
 pdf("stm-plot-topic-quality.pdf", width=10, height=8.5)
 topicQuality(model=poliblogPrevFit, documents=docs)
 dev.off()
