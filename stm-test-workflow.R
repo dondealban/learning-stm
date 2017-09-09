@@ -15,14 +15,12 @@ library(stm)      # Package for sturctural topic modeling
 library(igraph)   # Package for network analysis and visualisation
 library(ggplot2)  # Package for visualisations using Grammar of Graphics
 
-
 # ----------------------------------------
 # LOAD DATA
 # ----------------------------------------
 
 data <- read.csv("poliblogs2008.csv") # Download link: https://goo.gl/4ohgr4
 load("VignetteObjects.RData")         # Download link: https://goo.gl/xK17EQ
-
 
 # ----------------------------------------
 # PREPARE AND PRE-PROCESS DATA
@@ -59,5 +57,16 @@ dev.off()
 # reproducibility.
 poliblogPrevFit <- stm(out$documents, out$vocab, K=20, prevalence=~rating+s(day), 
                        max.em.its=75, data=out$meta, init.type="Spectral", 
-                       seed=20170909)
+                       seed=8458159)
+
+# ----------------------------------------
+# EVALUATE MODELS
+# ----------------------------------------
+
+# SEARCH AND SELECT MODEL FOR A FIXED NUMBER OF TOPICS.
+# The function 'selectModel' automates the process of finding and selecting a model
+# with desirable properties. STM will compare a number of models side by side and will 
+# keep the models that do not converge quickly. 
+poliblogSelect <- selectModel(out$documents, out$vocab, K=20, prevalence=~rating+s(day),
+                              max.em.its=75, data=meta, runs=20, seed=8458159)
 
