@@ -18,3 +18,8 @@ library(igraph) # Package for network analysis and visualisation
 # ----------------------------------------
 # LOAD DATA
 # ----------------------------------------
+
+data <- read.csv("poliblogs2008.csv") # Download link: https://goo.gl/4ohgr4
+load("VignetteObjects.RData")         # Download link: https://goo.gl/xK17EQ
+
+
