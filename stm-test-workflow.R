@@ -70,3 +70,9 @@ poliblogPrevFit <- stm(out$documents, out$vocab, K=20, prevalence=~rating+s(day)
 poliblogSelect <- selectModel(out$documents, out$vocab, K=20, prevalence=~rating+s(day),
                               max.em.its=75, data=meta, runs=20, seed=8458159)
 
+# Plot the different models that make the cut along exclusivity and semantic coherence
+# of their topics. Save plot as pdf.
+pdf("stm-plot-selected.pdf", width=10, height=8.5)
+plotModels(poliblogSelect)
+dev.off()
+
