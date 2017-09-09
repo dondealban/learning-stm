@@ -11,8 +11,9 @@
 # LOAD LIBRARIES
 # ----------------------------------------
 
-library(stm)    # Package for sturctural topic modeling
-library(igraph) # Package for network analysis and visualisation
+library(stm)      # Package for sturctural topic modeling
+library(igraph)   # Package for network analysis and visualisation
+library(ggplot2)  # Package for visualisations using Grammar of Graphics
 
 
 # ----------------------------------------
@@ -22,4 +23,26 @@ library(igraph) # Package for network analysis and visualisation
 data <- read.csv("poliblogs2008.csv") # Download link: https://goo.gl/4ohgr4
 load("VignetteObjects.RData")         # Download link: https://goo.gl/xK17EQ
 
+
+# ----------------------------------------
+# PREPARE AND PRE-PROCESS DATA
+# ----------------------------------------
+
+# Stemming, stopword removal, etc.
+processed <- textProcessor(data$documents, metadata=data)
+
+# Structure and index for usage in the STM model. Ensure that object has no missing
+# values. Remove low frequency words using 'lower.thresh' option. See ?prepDocuments 
+# for more information.
+out <- prepDocuments(processed$documents, processed$vocab, processed$meta)
+
+# The output will have object meta, documents, and vocab 
+docs <- out$documents
+vocab <- out$vocab
+meta <-out$meta
+
+# Take a look at how many words and documents would be removed using different 
+# lower.thresholds. Save plot as pdf.
+plotRemoved(processed$documents, lower.thresh=seq(1,200, by=100))
+#ggsave(oc1, file="stm-plot-removed.pdf", width=7, height=5.5, units="in", dpi=300)
 
