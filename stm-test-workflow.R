@@ -47,3 +47,17 @@ pdf("stm-plot-removed.pdf", width=10, height=8.5)
 plotRemoved(processed$documents, lower.thresh=seq(1,200, by=100))
 dev.off()
 
+# ----------------------------------------
+# ESTIMATE THE STRUCTURAL TOPIC MODEL
+# ----------------------------------------
+
+# ESTIMATION WITH THE TOPIC PREVALENCE PARAMETER.
+# Run an STM model using the 'out' data with 20 topics. Ask how prevalence of topics 
+# varies across documents' meta data, including 'rating' and day. The option 's(day)' 
+# applies a spline normalization to 'day' variable. The authors specified the maximum
+# number of expectation-maximization iterations = 75, and the seed they are using for 
+# reproducibility.
+poliblogPrevFit <- stm(out$documents, out$vocab, K=20, prevalence=~rating+s(day), 
+                       max.em.its=75, data=out$meta, init.type="Spectral", 
+                       seed=20170909)
+
