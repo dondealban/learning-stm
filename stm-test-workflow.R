@@ -84,3 +84,17 @@ dev.off()
 pdf("stm-plot-topic-quality.pdf", width=10, height=8.5)
 topicQuality(model=poliblogPrevFit, documents=docs)
 dev.off()
+
+# Select one of the models to work with based on the best semantic coherence and 
+# exclusivity values (upper right corner of plot).
+selectedModel3 <- poliblogSelect$runout[[3]] # Choose model #3
+
+# ALTERNATIVE: MODEL SEARCH ACROSS A NUMBER OF TOPICS.
+# Let R figure out the best model for you defined by exclusivity and semantic 
+# coherence for each K (i.e. # of topics) (here among 10 options per K). The 
+# function 'searchK' uses a data-driven approach to selecting the number of topics.
+kResult <- searchK(out$documents, out$vocab, K=c(7,10), prevalence=~rating+s(day),
+                   data=meta)
+pdf("stm-plot-searchk.pdf", width=10, height=8.5)
+plot(kResult)
+dev.off()
