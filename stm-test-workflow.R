@@ -76,3 +76,8 @@ pdf("stm-plot-selected.pdf", width=10, height=8.5)
 plotModels(poliblogSelect)
 dev.off()
 
+# Each STM has semantic coherence and exclusivity values associated with each topic. 
+# The topicQuality' fucntion plots these values and labels each with its topic number.
+pdf("stm-plot-topic-quality.pdf", width=10, height=8.5)
+topicQuality(model=poliblogPrevFit, documents=docs)
+dev.off()
