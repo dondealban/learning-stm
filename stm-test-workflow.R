@@ -43,6 +43,7 @@ meta <-out$meta
 
 # Take a look at how many words and documents would be removed using different 
 # lower.thresholds. Save plot as pdf.
+pdf("stm-plot-removed.pdf", width=10, height=8.5)
 plotRemoved(processed$documents, lower.thresh=seq(1,200, by=100))
-#ggsave(oc1, file="stm-plot-removed.pdf", width=7, height=5.5, units="in", dpi=300)
+dev.off()
 
