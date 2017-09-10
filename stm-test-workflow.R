@@ -11,8 +11,9 @@
 # LOAD LIBRARIES
 # ----------------------------------------
 
-library(stm)      # Package for sturctural topic modeling
-library(igraph)   # Package for network analysis and visualisation
+library(stm)        # Package for sturctural topic modeling
+library(igraph)     # Package for network analysis and visualisation
+library(stmCorrViz) # Package for hierarchical correlation view of STMs
 
 # ----------------------------------------
 # LOAD DATA
@@ -295,3 +296,14 @@ pdf("stm-plot-prevfit-convergence.pdf", width=10, height=8.5)
 plot(poliblogPrevFit$convergence$bound, type="l", ylab="Approximate Objective", 
      main="Convergence")
 dev.off()
+
+# ----------------------------------------
+# INTERACTIVE VISUALISATION OF STM
+# ----------------------------------------
+
+# The stmCorrViz() function generates an interactive visualisation of topic hierarchy/
+# correlations in a structural topicl model. The package performs a hierarchical
+# clustering of topics that are then exported to a JSON object and visualised using D3.
+
+stmCorrViz(poliblogPrevFit, "correlation.html", documents_raw=data$documents, 
+           documents_matrix=out$documents)
