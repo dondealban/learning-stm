@@ -305,5 +305,5 @@ dev.off()
 # correlations in a structural topicl model. The package performs a hierarchical
 # clustering of topics that are then exported to a JSON object and visualised using D3.
 
-stmCorrViz(poliblogPrevFit, "correlation.html", documents_raw=data$documents, 
-           documents_matrix=out$documents)
+stmCorrViz(poliblogPrevFit, "stm-interactive-correlation.html", 
+           documents_raw=data$documents, documents_matrix=out$documents)
