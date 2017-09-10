@@ -152,7 +152,7 @@ dev.off()
 # 3. Estimating relationships between metadata and topics: estimateEffect
 # 4. Estimating topic correlations: topicCorr
 
-# LABEL TOPICS.
+# LABELTOPICS.
 # Label topics by listing top words for selected topics 3, 7, 20. Save as txt file.
 labelTopicsSel <- labelTopics(poliblogPrevFit, c(3,7,20))
 sink("stm-list-label-topics-selected.txt", append=FALSE, split=TRUE)
@@ -164,7 +164,12 @@ sink("stm-list-label-topics-all.txt", append=FALSE, split=TRUE)
 print(labelTopicsAll)
 sink()
 
-
+# SAGELABELS.
+# This can be used as a more detailed alternative to labelTopics. The function displays
+# verbose labels that describe topics and topic-covariate groups in depth.
+sink("stm-list-sagelabel.txt", append=FALSE, split=TRUE)
+print(sageLabels(poliblogPrevFit))
+sink()
 
 
 

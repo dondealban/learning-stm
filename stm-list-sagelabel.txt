@@ -1,0 +1,180 @@
+Topic 1: 
+ 	 Marginal Highest Prob: democrat, republican, senat, vote, hous, bill, gop 
+ 	 Marginal FREX: chambliss, aye, hagan, merkley, saxbi, pelosi, nrsc 
+ 	 Marginal Lift: lunsford, -girlfriend, -pork, -roll, -safe, -sep-, abramoff-sponsor 
+ 	 Marginal Score: amtak-, boozman, cardoza, crenshaw, granger, herger, ks- 
+ 
+ 	 Topic Kappa:  
+ 	 Kappa with Baseline:  
+ 
+Topic 2: 
+ 	 Marginal Highest Prob: citi, polic, said, offic, report, protest, one 
+ 	 Marginal FREX: taser, usmc, berkeley, polic, flight, cpl, airlin 
+ 	 Marginal Lift: bergreen, blvd, chessani, corcoran, crosswalk, desi, dona 
+ 	 Marginal Score: amtak-, boozman, cardoza, crenshaw, granger, herger, ks- 
+ 
+ 	 Topic Kappa:  
+ 	 Kappa with Baseline:  
+ 
+Topic 3: 
+ 	 Marginal Highest Prob: media, news, time, report, stori, show, press 
+ 	 Marginal FREX: oreilli, hanniti, matthew, editor, coverag, journalist, blogger 
+ 	 Marginal Lift: adolfo, bandwidth, bikini-clad, blogopsher, bmx, bookshelf, broadkorb 
+ 	 Marginal Score: amtak-, boozman, cardoza, crenshaw, granger, herger, ks- 
+ 
+ 	 Topic Kappa:  
+ 	 Kappa with Baseline:  
+ 
+Topic 4: 
+ 	 Marginal Highest Prob: obama, poll, democrat, voter, state, vote, win 
+ 	 Marginal FREX: poll, deleg, superdeleg, michigan, pennsylvania, primari, zogbi 
+ 	 Marginal Lift: quinnipiac, -aug, -command, -what, abcpost, alamo, arkansasno 
+ 	 Marginal Score: amtak-, boozman, cardoza, crenshaw, granger, herger, ks- 
+ 
+ 	 Topic Kappa:  
+ 	 Kappa with Baseline:  
+ 
+Topic 5: 
+ 	 Marginal Highest Prob: bush, presid, administr, hous, said, white, tortur 
+ 	 Marginal FREX: waterboard, mukasey, thinkfast, interrog, surveil, detaine, cia 
+ 	 Marginal Lift: -attorney, addington, al-qahtani, allr, anti-waterboard, arraign, ausa 
+ 	 Marginal Score: amtak-, boozman, cardoza, crenshaw, granger, herger, ks- 
+ 
+ 	 Topic Kappa:  
+ 	 Kappa with Baseline:  
+ 
+Topic 6: 
+ 	 Marginal Highest Prob: tax, will, govern, econom, economi, plan, health 
+ 	 Marginal FREX: mortgag, lender, fanni, tax, mae, insur, billion 
+ 	 Marginal Lift: --acenturi, -bailout, -compet, -stock, -teach, abromowitz, ameriquest 
+ 	 Marginal Score: amtak-, boozman, cardoza, crenshaw, granger, herger, ks- 
+ 
+ 	 Topic Kappa:  
+ 	 Kappa with Baseline:  
+ 
+Topic 7: 
+ 	 Marginal Highest Prob: one, question, hes, even, like, point, doesnt 
+ 	 Marginal FREX: exit, vis-avi, see-dubya, messiah, barri, itll, maverick 
+ 	 Marginal Lift: --one, -sahab, advanceupd, ahmadinejad-esqu, al-hanooti, anti-iranian, badass 
+ 	 Marginal Score: amtak-, boozman, cardoza, crenshaw, granger, herger, ks- 
+ 
+ 	 Topic Kappa:  
+ 	 Kappa with Baseline:  
+ 
+Topic 8: 
+ 	 Marginal Highest Prob: conserv, romney, immigr, huckabe, abort, eastern, right 
+ 	 Marginal FREX: huckabe, hage, huck, romney, evangel, rudi, giuliani 
+ 	 Marginal Lift: ahmanson, al-azhar, amnest, anti-cathol, anti-islam, beliefnet, brog 
+ 	 Marginal Score: amtak-, boozman, cardoza, crenshaw, granger, herger, ks- 
+ 
+ 	 Topic Kappa:  
+ 	 Kappa with Baseline:  
+ 
+Topic 9: 
+ 	 Marginal Highest Prob: iran, israel, nuclear, russia, iranian, will, state 
+ 	 Marginal FREX: putin, gaza, ossetia, hama, russian, iaea, hezballah 
+ 	 Marginal Lift: abkhazia, ablaz, aboul, aksa, al-assad, al-yaw, anti-aipac 
+ 	 Marginal Score: iran, israel, iranian, hama, nuclear, isra, russian 
+ 
+ 	 Topic Kappa:  
+ 	 Kappa with Baseline:  
+ 
+Topic 10: 
+ 	 Marginal Highest Prob: court, will, vote, elect, law, state, ballot 
+ 	 Marginal FREX: mugab, sura, muhammad, tsvangirai, mdc, quran, kathir 
+ 	 Marginal Lift: ---vote, --vote, -fault, -judg, -next, -suddi, -then 
+ 	 Marginal Score: amtak-, boozman, cardoza, crenshaw, granger, herger, ks- 
+ 
+ 	 Topic Kappa:  
+ 	 Kappa with Baseline:  
+ 
+Topic 11: 
+ 	 Marginal Highest Prob: iraq, iraqi, troop, war, forc, withdraw, will 
+ 	 Marginal FREX: maliki, sadr, timet, basra, mahdi, al-maliki, iraqi 
+ 	 Marginal Lift: al-hakim, al-obeidi, amara, basra, drawdown, falluja, footwear 
+ 	 Marginal Score: amtak-, boozman, cardoza, crenshaw, granger, herger, ks- 
+ 
+ 	 Topic Kappa:  
+ 	 Kappa with Baseline:  
+ 
+Topic 12: 
+ 	 Marginal Highest Prob: think, peopl, dont, like, know, say, just 
+ 	 Marginal FREX: linktocommentspostcount, postcounttb, dont, think, thing, digbi, that 
+ 	 Marginal Lift: --distant, aboutdigbi, administrationim, beeyotch, billdigbi, condiment, countrymatthew 
+ 	 Marginal Score: amtak-, boozman, cardoza, crenshaw, granger, herger, ks- 
+ 
+ 	 Topic Kappa:  
+ 	 Kappa with Baseline:  
+ 
+Topic 13: 
+ 	 Marginal Highest Prob: militari, war, afghanistan, attack, terrorist, pakistan, veteran 
+ 	 Marginal FREX: afghanistan, taliban, musharraf, afghan, laden, pakistani, bhutto 
+ 	 Marginal Lift: -volunt, afghan-pakistan, afghanistansen, ahmadi, al-iraqi, ampute, anbari 
+ 	 Marginal Score: amtak-, boozman, cardoza, crenshaw, granger, herger, ks- 
+ 
+ 	 Topic Kappa:  
+ 	 Kappa with Baseline:  
+ 
+Topic 14: 
+ 	 Marginal Highest Prob: obama, wright, black, polit, barack, ayer, white 
+ 	 Marginal FREX: wright, jeremiah, reverend, dohrn, ayer, pfleger, sermon 
+ 	 Marginal Lift: afro-centr, afrocentr, againstand, agin, amerikkka, answeri, arroganceth 
+ 	 Marginal Score: amtak-, boozman, cardoza, crenshaw, granger, herger, ks- 
+ 
+ 	 Topic Kappa:  
+ 	 Kappa with Baseline:  
+ 
+Topic 15: 
+ 	 Marginal Highest Prob: oil, energi, price, global, drill, will, warm 
+ 	 Marginal FREX: drill, emiss, temperatur, ethanol, offshor, climat, oil 
+ 	 Marginal Lift: -zero, abec, apss, arabl, bio-solar, blm, boyc 
+ 	 Marginal Score: amtak-, boozman, cardoza, crenshaw, granger, herger, ks- 
+ 
+ 	 Topic Kappa:  
+ 	 Kappa with Baseline:  
+ 
+Topic 16: 
+ 	 Marginal Highest Prob: will, american, presid, america, nation, countri, polici 
+ 	 Marginal FREX: america, bolton, democraci, countri, must, centuri, achiev 
+ 	 Marginal Lift: -negoti, borah, granma, iranand, nazi-appeas, nunn-lugar, omv 
+ 	 Marginal Score: amtak-, boozman, cardoza, crenshaw, granger, herger, ks- 
+ 
+ 	 Topic Kappa:  
+ 	 Kappa with Baseline:  
+ 
+Topic 17: 
+ 	 Marginal Highest Prob: mccain, palin, john, campaign, said, obama, biden 
+ 	 Marginal FREX: palin, holtz-eakin, biden, sarah, fiorina, mccain, r-az 
+ 	 Marginal Lift: albrecht, back-bit, dhls, doggon, endspost-deb, fusillad, haymak 
+ 	 Marginal Score: amtak-, boozman, cardoza, crenshaw, granger, herger, ks- 
+ 
+ 	 Topic Kappa:  
+ 	 Kappa with Baseline:  
+ 
+Topic 18: 
+ 	 Marginal Highest Prob: women, one, school, film, children, like, famili 
+ 	 Marginal FREX: film, girl, solzhenitsyn, hartley, movi, darwin, hollywood 
+ 	 Marginal Lift: ashbi, augsburg, barkin, ben-hur, blackboard, bohemian, boredom 
+ 	 Marginal Score: amtak-, boozman, cardoza, crenshaw, granger, herger, ks- 
+ 
+ 	 Topic Kappa:  
+ 	 Kappa with Baseline:  
+ 
+Topic 19: 
+ 	 Marginal Highest Prob: polit, campaign, report, state, money, group, investig 
+ 	 Marginal FREX: blagojevich, fitzgerald, blago, rezko, donat, donor, spitzer 
+ 	 Marginal Lift: -apr-, -feb-, -mar-, -market-r, -may-, -us, abdon 
+ 	 Marginal Score: amtak-, boozman, cardoza, crenshaw, granger, herger, ks- 
+ 
+ 	 Topic Kappa:  
+ 	 Kappa with Baseline:  
+ 
+Topic 20: 
+ 	 Marginal Highest Prob: obama, clinton, campaign, hillari, barack, will, said 
+ 	 Marginal FREX: clinton, hillari, nafta, obama, wolfson, edward, camp 
+ 	 Marginal Lift: abcth, ack, amd, argus, asc, bachtel, brawler 
+ 	 Marginal Score: amtak-, boozman, cardoza, crenshaw, granger, herger, ks- 
+ 
+ 	 Topic Kappa:  
+ 	 Kappa with Baseline:  
+ 
