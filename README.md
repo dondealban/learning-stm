@@ -14,8 +14,7 @@ I copied the dataset into this repository for easier replication. The original l
 ## An `stm` Workflow Example
 I implemented the following workflow for generating structural topic models in R software. Note that this workflow follows a general outline so I can explore most of the `stm` functions and see how to implement them. Users can modify this to suit their objectives.
 
-###### 1. Load Libraries
-
+##### 1. Load Libraries
 The following R packages were used for this exercise: `stm`, `stmCorrViz`, and `igraph`. To load these packages we can write:
 
 ```R
@@ -25,13 +24,38 @@ library(stmCorrViz) # Package for hierarchical correlation view of STMs
 ```
 
 ##### 2. Load Data
-
-As described above, the dataset used include a CSV file (poliblogs2008.csv) and an RData file (VignetteObjects.RData), which contains a pre-processed texts by the package authors named 'shortdoc' that was used for their vignette example. Having the RData file can be used to reduce compiling time by not running the models and instead load a workspace with the models already estimated.
+As described above, the dataset used include a CSV file (poliblogs2008.csv) and an RData file (VignetteObjects.RData), which contains a pre-processed texts by the package authors named 'shortdoc' that was used for their vignette example. Having the RData file can be used to reduce compiling time by not running the models and instead load a workspace with the models already estimated. (Note these source links to the [CSV](https://goo.gl/4ohgr4) and [RData](https://goo.gl/xK17EQ) files.
 
 ```R
-data <- read.csv("poliblogs2008.csv") # Source [(link)](https://goo.gl/4ohgr4)
-load("VignetteObjects.RData")         # Source [(link)](https://goo.gl/xK17EQ)
+data <- read.csv("poliblogs2008.csv") 
+load("VignetteObjects.RData") 
 ```
+
+#### 3. Prepare and Pre-process the Data
+
+For data preparation, first, stemming and stopword removal were done using the `textProcessor()` function:
+```R
+processed <- textProcessor(data$documents, metadata=data)
+```
+
+Then, `prepDocuments` is used to structure and index the data for usage in the structural topic model. The object should have no missing values. Low frequency words can be removed using the 'lower.thresh' option. See `?prepDocuments` for more information.
+```R
+out <- prepDocuments(processed$documents, processed$vocab, processed$meta)
+```
+
+Next, save the output object meta, documents, and vocab into variables:
+```R
+docs <- out$documents
+vocab <- out$vocab
+meta <- out$meta
+```
+
+To check how many words and documents would be removed using different lower thresholds, the following command can be used:
+```R
+plotRemoved(processed$documents, lower.thresh=seq(1,200, by=100))
+```
+The plot below shows the documents, words, tokens removed using the specified threshold.
+![Image plotRemoved](https://github.com/dondealban/learning-stm/blob/master/stm-plot-removed.pdf "Image plotRemoved")
 
 ## References
 
