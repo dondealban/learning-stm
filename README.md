@@ -14,7 +14,9 @@ I copied the dataset into this repository for easier replication. The original l
 ## An `stm` Workflow Example
 I implemented the following workflow for generating structural topic models in R software. Note that this workflow follows a general outline so I can explore most of the `stm` functions and see how to implement them. Users can modify this to suit their objectives.
 
-##### 1. Load Libraries
+### A. Ingest
+
+##### 1. Load libraries
 The following R packages were used for this exercise: `stm`, `stmCorrViz`, and `igraph`. To load these packages we can write:
 
 ```R
@@ -23,7 +25,7 @@ library(igraph)     # Package for network analysis and visualisation
 library(stmCorrViz) # Package for hierarchical correlation view of STMs
 ```
 
-##### 2. Load Data
+##### 2. Load data
 As described above, the dataset used include a CSV file (poliblogs2008.csv) and an RData file (VignetteObjects.RData), which contains a pre-processed texts by the package authors named 'shortdoc' that was used for their vignette example. Having the RData file can be used to reduce compiling time by not running the models and instead load a workspace with the models already estimated. (Note these source links to the [CSV](https://goo.gl/4ohgr4) and [RData](https://goo.gl/xK17EQ) files.
 
 ```R
@@ -31,7 +33,9 @@ data <- read.csv("poliblogs2008.csv")
 load("VignetteObjects.RData") 
 ```
 
-#### 3. Prepare and Pre-process the Data
+### B. Prepare
+
+##### 3. Pre-process the data
 
 For data preparation, first, stemming and stopword removal were done using the `textProcessor()` function:
 ```R
@@ -54,8 +58,8 @@ To check how many words and documents would be removed using different lower thr
 ```R
 plotRemoved(processed$documents, lower.thresh=seq(1,200, by=100))
 ```
-The plot below shows the documents, words, tokens removed using the specified threshold.
-![Image plotRemoved](https://github.com/dondealban/learning-stm/blob/master/stm-plot-removed.pdf "Image plotRemoved")
+The plot below shows the documents, words, and tokens removed using the specified threshold.
+
 
 ## References
 
