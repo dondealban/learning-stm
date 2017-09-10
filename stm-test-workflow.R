@@ -59,6 +59,20 @@ poliblogPrevFit <- stm(out$documents, out$vocab, K=20, prevalence=~rating+s(day)
                        max.em.its=75, data=out$meta, init.type="Spectral", 
                        seed=8458159)
 
+# Plot the STM using different types. Save as pdf files.
+pdf("stm-plot-prevfit.pdf", width=10, height=8.5)
+plot(poliblogPrevFit)
+dev.off()
+pdf("stm-plot-prevfit-summary.pdf", width=10, height=8.5)
+plot(poliblogPrevFit, type="summary", xlim=c(0,.4))
+dev.off()
+pdf("stm-plot-prevfit-labels.pdf", width=10, height=8.5)
+plot(poliblogPrevFit, type="labels", topics=c(3,7,20))
+dev.off()
+pdf("stm-plot-prevfit-histogram.pdf", width=14, height=12.5)
+plot(poliblogPrevFit, type="hist")
+dev.off()
+
 # ----------------------------------------
 # EVALUATE MODELS
 # ----------------------------------------
@@ -73,7 +87,7 @@ poliblogSelect <- selectModel(out$documents, out$vocab, K=20, prevalence=~rating
                               max.em.its=75, data=meta, runs=20, seed=8458159)
 
 # Plot the different models that make the cut along exclusivity and semantic coherence
-# of their topics. Save plot as pdf.
+# of their topics. Save plot as pdf file.
 pdf("stm-plot-selected.pdf", width=10, height=8.5)
 plotModels(poliblogSelect)
 dev.off()
@@ -152,13 +166,6 @@ sink()
 
 
 
-#OK
-#pdf("stm-plot-label-topics-selected.pdf", width=10, height=8.5)
-#plot(poliblogPrevFit, type="labels", topics=c(3,7,20))
-#dev.off()
 
-#plot(poliblogPrevFit, type="labels", topics=c(3,7,20))
-#plot(poliblogPrevFit, type="summary", xlim=c(0,.4))
-#plot(poliblogPrevFit, type="hist")
 
 
