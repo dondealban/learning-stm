@@ -136,13 +136,19 @@ $(document).ready(function () {
 </div>
 <div id="an-stm-workflow-example" class="section level2">
 <h2>An <code>stm</code> Workflow Example</h2>
-<p>I implemented the following workflow for generating structural topic models in R software.</p>
+<p>I implemented the following workflow for generating structural topic models in R software. Note that this workflow follows a general outline so I can explore most of the <code>stm</code> functions and see how to implement them. Users can modify this to suit their objectives.</p>
 <div id="load-libraries" class="section level6">
 <h6>1. Load Libraries</h6>
 <p>The following R packages were used for this exercise: <code>stm</code>, <code>stmCorrViz</code>, and <code>igraph</code>. To load these packages we can write:</p>
 <pre class="r"><code>library(stm)        # Package for sturctural topic modeling
 library(igraph)     # Package for network analysis and visualisation
 library(stmCorrViz) # Package for hierarchical correlation view of STMs</code></pre>
+</div>
+<div id="load-data" class="section level5">
+<h5>2. Load Data</h5>
+<p>As described above, the dataset used include a CSV file (poliblogs2008.csv) and an RData file (VignetteObjects.RData), which contains a pre-processed texts by the package authors named ‘shortdoc’ that was used for their vignette example. Having the RData file can be used to reduce compiling time by not running the models and instead load a workspace with the models already estimated.</p>
+<pre class="r"><code>data &lt;- read.csv(&quot;poliblogs2008.csv&quot;) # Source [(link)](https://goo.gl/4ohgr4)
+load(&quot;VignetteObjects.RData&quot;)         # Source [(link)](https://goo.gl/xK17EQ)</code></pre>
 </div>
 </div>
 <div id="references" class="section level2">

@@ -12,7 +12,7 @@ The dataset used to illustrate the `stm` package, as used in the vignette, is a 
 I copied the dataset into this repository for easier replication. The original links to the example datasets can be found in the vignette and in the R script. 
 
 ## An `stm` Workflow Example
-I implemented the following workflow for generating structural topic models in R software. Note that this workflow follows a general outline to explore most of the `stm` functions, which you can modify to suit your objective.
+I implemented the following workflow for generating structural topic models in R software. Note that this workflow follows a general outline so I can explore most of the `stm` functions and see how to implement them. Users can modify this to suit their objectives.
 
 ###### 1. Load Libraries
 
@@ -24,7 +24,14 @@ library(igraph)     # Package for network analysis and visualisation
 library(stmCorrViz) # Package for hierarchical correlation view of STMs
 ```
 
+##### 2. Load Data
 
+As described above, the dataset used include a CSV file (poliblogs2008.csv) and an RData file (VignetteObjects.RData), which contains a pre-processed texts by the package authors named 'shortdoc' that was used for their vignette example. Having the RData file can be used to reduce compiling time by not running the models and instead load a workspace with the models already estimated.
+
+```R
+data <- read.csv("poliblogs2008.csv") # Source [(link)](https://goo.gl/4ohgr4)
+load("VignetteObjects.RData")         # Source [(link)](https://goo.gl/xK17EQ)
+```
 
 ## References
 
