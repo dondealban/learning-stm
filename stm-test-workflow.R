@@ -13,7 +13,6 @@
 
 library(stm)      # Package for sturctural topic modeling
 library(igraph)   # Package for network analysis and visualisation
-library(ggplot2)  # Package for visualisations using Grammar of Graphics
 
 # ----------------------------------------
 # LOAD DATA
