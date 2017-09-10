@@ -264,3 +264,35 @@ dev.off()
 pdf("stm-plot-content-wordcloud.pdf", width=10, height=8.5)
 cloud(poliblogContent, topic=7)
 dev.off()
+
+# ----------------------------------------
+# PLOT COVARIATE INTERACTIONS
+# ----------------------------------------
+
+# Interactions between covariates can be examined such that one variable may “moderate”
+# the effect of another variable.
+poliblogInteraction <- stm(out$documents, out$vocab, K=20, prevalence=~rating*day, 
+                           max.em.its=75, data=out$meta, seed=8458159)
+
+# Prep covariates using the estimateEffect() function, only this time, we include the 
+# interaction variable. Plot the variables and save as pdf files.
+prep2 <- estimateEffect(c(20) ~ rating*day, poliblogInteraction, metadata=out$meta, 
+                       uncertainty="None")
+pdf("stm-plot-interact-estimate-effect.pdf", width=10, height=8.5)
+plot(prep2, covariate="day", model=poliblogInteraction, method="continuous", xlab="Days",
+     moderator="rating", moderator.value="Liberal", linecol="blue", ylim=c(0,0.12), 
+     printlegend=F)
+plot(prep2, covariate="day", model=poliblogInteraction, method="continuous", xlab="Days",
+     moderator="rating", moderator.value="Conservative", linecol="red", add=T,
+     printlegend=F)
+legend(0,0.12, c("Liberal", "Conservative"), lwd=2, col=c("blue", "red"))
+dev.off()
+
+# ----------------------------------------
+# PLOT CONVERGENCE
+# ----------------------------------------
+
+pdf("stm-plot-prevfit-convergence.pdf", width=10, height=8.5)
+plot(poliblogPrevFit$convergence$bound, type="l", ylab="Approximate Objective", 
+     main="Convergence")
+dev.off()
