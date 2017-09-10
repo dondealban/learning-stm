@@ -258,4 +258,9 @@ plot(poliblogContent, type="perspectives", topics=7)
 dev.off()
 
 # WORD CLOUD.
+pdf("stm-plot-prevfit-wordcloud.pdf", width=10, height=8.5)
 cloud(poliblogPrevFit, topic=7)
+dev.off()
+pdf("stm-plot-content-wordcloud.pdf", width=10, height=8.5)
+cloud(poliblogContent, topic=7)
+dev.off()
