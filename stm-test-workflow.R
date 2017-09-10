@@ -97,7 +97,7 @@ selectedModel3 <- poliblogSelect$runout[[3]] # Choose model #3
 # processed through a function that takes a pareto dominant run of the model in 
 # terms of exclusivity and semantic coherence. If multiple runs are candidates 
 # (i.e., none weakly dominates the others), a single model run is randomly chosen 
-# from the set of undominated runs.
+# from the set of undominated runs. Save plots as pdf files.
 storage <- manyTopics(out$documents, out$vocab, K=c(7:10), prevalence=~rating+s(day),
                       data=meta, runs=10)
 storageOutput1 <- storage$out[[1]] # 7 topics
@@ -117,16 +117,48 @@ pdf("stm-plot-storage-output4.pdf", width=10, height=8.5)
 plot(storageOutput4)
 dev.off()
 
-
 # ALTERNATIVE: MODEL SEARCH ACROSS A NUMBER OF TOPICS.
 # Let R figure out the best model for you defined by exclusivity and semantic 
 # coherence for each K (i.e. # of topics). The function 'searchK' uses a data-driven
-# approach to selecting the number of topics.
+# approach to selecting the number of topics. Save plot as pdf file.
 kResult <- searchK(out$documents, out$vocab, K=c(7,10), prevalence=~rating+s(day),
                    data=meta)
 pdf("stm-plot-searchk.pdf", width=10, height=8.5)
 plot(kResult)
 dev.off()
 
+# ----------------------------------------
+# INTERPRET STMs BY PLOTTING RESULTS
+# ----------------------------------------
+
+# According to the package vignette, there are a number of ways to interpret the model
+# results. These include:
+# 1. Displaying words associated with topics: labelTopics, sageLabels
+# 2. Displaying documents highly associated with particular topics: findThoughts
+# 3. Estimating relationships between metadata and topics: estimateEffect
+# 4. Estimating topic correlations: topicCorr
+
+# LABEL TOPICS.
+# Label topics by listing top words for selected topics 3, 7, 20. Save as txt file.
+labelTopicsSel <- labelTopics(poliblogPrevFit, c(3,7,20))
+sink("stm-list-label-topics-selected.txt", append=FALSE, split=TRUE)
+print(labelTopicsSel)
+sink()
+# Label topics by listing top words for all topics. Save as txt file.
+labelTopicsAll <- labelTopics(poliblogPrevFit, c(1:20))
+sink("stm-list-label-topics-all.txt", append=FALSE, split=TRUE)
+print(labelTopicsAll)
+sink()
+
+
+
+#OK
+#pdf("stm-plot-label-topics-selected.pdf", width=10, height=8.5)
+#plot(poliblogPrevFit, type="labels", topics=c(3,7,20))
+#dev.off()
+
+#plot(poliblogPrevFit, type="labels", topics=c(3,7,20))
+#plot(poliblogPrevFit, type="summary", xlim=c(0,.4))
+#plot(poliblogPrevFit, type="hist")
 
 

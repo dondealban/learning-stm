@@ -1,0 +1,100 @@
+Topic 1 Top Words:
+ 	 Highest Prob: democrat, republican, senat, vote, hous, bill, gop 
+ 	 FREX: chambliss, aye, hagan, merkley, saxbi, pelosi, nrsc 
+ 	 Lift: lunsford, -girlfriend, -pork, -roll, -safe, -sep-, abramoff-sponsor 
+ 	 Score: aye, republican, gop, lieberman, rep, senat, reid 
+Topic 2 Top Words:
+ 	 Highest Prob: citi, polic, said, offic, report, protest, one 
+ 	 FREX: taser, usmc, berkeley, polic, flight, cpl, airlin 
+ 	 Lift: bergreen, blvd, chessani, corcoran, crosswalk, desi, dona 
+ 	 Score: usmc, polic, taser, cpl, citi, berkeley, marin 
+Topic 3 Top Words:
+ 	 Highest Prob: media, news, time, report, stori, show, press 
+ 	 FREX: oreilli, hanniti, matthew, editor, coverag, journalist, blogger 
+ 	 Lift: adolfo, bandwidth, bikini-clad, blogopsher, bmx, bookshelf, broadkorb 
+ 	 Score: oreilli, media, rove, fox, matthew, drudg, hanniti 
+Topic 4 Top Words:
+ 	 Highest Prob: obama, poll, democrat, voter, state, vote, win 
+ 	 FREX: poll, deleg, superdeleg, michigan, pennsylvania, primari, zogbi 
+ 	 Lift: quinnipiac, -aug, -command, -what, abcpost, alamo, arkansasno 
+ 	 Score: poll, obama, hillari, voter, mccain, deleg, vote 
+Topic 5 Top Words:
+ 	 Highest Prob: bush, presid, administr, hous, said, white, tortur 
+ 	 FREX: waterboard, mukasey, thinkfast, interrog, surveil, detaine, cia 
+ 	 Lift: -attorney, addington, al-qahtani, allr, anti-waterboard, arraign, ausa 
+ 	 Score: tortur, bush, perino, detaine, cia, waterboard, interrog 
+Topic 6 Top Words:
+ 	 Highest Prob: tax, will, govern, econom, economi, plan, health 
+ 	 FREX: mortgag, lender, fanni, tax, mae, insur, billion 
+ 	 Lift: --acenturi, -bailout, -compet, -stock, -teach, abromowitz, ameriquest 
+ 	 Score: tax, mortgag, bailout, billion, economi, paulson, loan 
+Topic 7 Top Words:
+ 	 Highest Prob: one, question, hes, even, like, point, doesnt 
+ 	 FREX: exit, vis-avi, see-dubya, messiah, barri, itll, maverick 
+ 	 Lift: --one, -sahab, advanceupd, ahmadinejad-esqu, al-hanooti, anti-iranian, badass 
+ 	 Score: exit, hes, maverick, shes, see-dubya, messiah, gadahn 
+Topic 8 Top Words:
+ 	 Highest Prob: conserv, romney, immigr, huckabe, abort, eastern, right 
+ 	 FREX: huckabe, hage, huck, romney, evangel, rudi, giuliani 
+ 	 Lift: ahmanson, al-azhar, amnest, anti-cathol, anti-islam, beliefnet, brog 
+ 	 Score: romney, huckabe, huck, mitt, hage, immigr, gay 
+Topic 9 Top Words:
+ 	 Highest Prob: iran, israel, nuclear, russia, iranian, will, state 
+ 	 FREX: putin, gaza, ossetia, hama, russian, iaea, hezballah 
+ 	 Lift: abkhazia, ablaz, aboul, aksa, al-assad, al-yaw, anti-aipac 
+ 	 Score: iran, israel, iranian, hama, nuclear, isra, russian 
+Topic 10 Top Words:
+ 	 Highest Prob: court, will, vote, elect, law, state, ballot 
+ 	 FREX: mugab, sura, muhammad, tsvangirai, mdc, quran, kathir 
+ 	 Lift: ---vote, --vote, -fault, -judg, -next, -suddi, -then 
+ 	 Score: franken, mugab, muhammad, sura, ballot, quran, allah 
+Topic 11 Top Words:
+ 	 Highest Prob: iraq, iraqi, troop, war, forc, withdraw, will 
+ 	 FREX: maliki, sadr, timet, basra, mahdi, al-maliki, iraqi 
+ 	 Lift: al-hakim, al-obeidi, amara, basra, drawdown, falluja, footwear 
+ 	 Score: iraqi, iraq, maliki, sadr, troop, basra, mahdi 
+Topic 12 Top Words:
+ 	 Highest Prob: think, peopl, dont, like, know, say, just 
+ 	 FREX: linktocommentspostcount, postcounttb, dont, think, thing, digbi, that 
+ 	 Lift: --distant, aboutdigbi, administrationim, beeyotch, billdigbi, condiment, countrymatthew 
+ 	 Score: linktocommentspostcount, postcounttb, think, republican, hes, dont, that 
+Topic 13 Top Words:
+ 	 Highest Prob: militari, war, afghanistan, attack, terrorist, pakistan, veteran 
+ 	 FREX: afghanistan, taliban, musharraf, afghan, laden, pakistani, bhutto 
+ 	 Lift: -volunt, afghan-pakistan, afghanistansen, ahmadi, al-iraqi, ampute, anbari 
+ 	 Score: afghanistan, pakistan, taliban, musharraf, militari, pakistani, qaeda 
+Topic 14 Top Words:
+ 	 Highest Prob: obama, wright, black, polit, barack, ayer, white 
+ 	 FREX: wright, jeremiah, reverend, dohrn, ayer, pfleger, sermon 
+ 	 Lift: afro-centr, afrocentr, againstand, agin, amerikkka, answeri, arroganceth 
+ 	 Score: wright, obama, ayer, jeremiah, church, pastor, racist 
+Topic 15 Top Words:
+ 	 Highest Prob: oil, energi, price, global, drill, will, warm 
+ 	 FREX: drill, emiss, temperatur, ethanol, offshor, climat, oil 
+ 	 Lift: -zero, abec, apss, arabl, bio-solar, blm, boyc 
+ 	 Score: oil, drill, energi, gas, climat, global, price 
+Topic 16 Top Words:
+ 	 Highest Prob: will, american, presid, america, nation, countri, polici 
+ 	 FREX: america, bolton, democraci, countri, must, centuri, achiev 
+ 	 Lift: -negoti, borah, granma, iranand, nazi-appeas, nunn-lugar, omv 
+ 	 Score: america, bush, presid, bolton, american, polici, world 
+Topic 17 Top Words:
+ 	 Highest Prob: mccain, palin, john, campaign, said, obama, biden 
+ 	 FREX: palin, holtz-eakin, biden, sarah, fiorina, mccain, r-az 
+ 	 Lift: albrecht, back-bit, dhls, doggon, endspost-deb, fusillad, haymak 
+ 	 Score: mccain, palin, biden, sarah, obama, r-az, alaska 
+Topic 18 Top Words:
+ 	 Highest Prob: women, one, school, film, children, like, famili 
+ 	 FREX: film, girl, solzhenitsyn, hartley, movi, darwin, hollywood 
+ 	 Lift: ashbi, augsburg, barkin, ben-hur, blackboard, bohemian, boredom 
+ 	 Score: film, women, movi, girl, school, hartley, feminist 
+Topic 19 Top Words:
+ 	 Highest Prob: polit, campaign, report, state, money, group, investig 
+ 	 FREX: blagojevich, fitzgerald, blago, rezko, donat, donor, spitzer 
+ 	 Lift: -apr-, -feb-, -mar-, -market-r, -may-, -us, abdon 
+ 	 Score: blagojevich, rezko, acorn, blago, chicago, investig, donor 
+Topic 20 Top Words:
+ 	 Highest Prob: obama, clinton, campaign, hillari, barack, will, said 
+ 	 FREX: clinton, hillari, nafta, obama, wolfson, edward, camp 
+ 	 Lift: abcth, ack, amd, argus, asc, bachtel, brawler 
+ 	 Score: obama, hillari, clinton, barack, campaign, senat, wolfson 
