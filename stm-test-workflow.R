@@ -26,7 +26,7 @@ load("VignetteObjects.RData")         # Download link: https://goo.gl/xK17EQ
 # PREPARE AND PRE-PROCESS DATA
 # ----------------------------------------
 
-# Stemming, stopword removal, etc.
+# Stemming, stopword removal, etc. using textProcessor() function
 processed <- textProcessor(data$documents, metadata=data)
 
 # Structure and index for usage in the STM model. Ensure that object has no missing
@@ -51,7 +51,7 @@ dev.off()
 
 # ESTIMATION WITH THE TOPIC PREVALENCE PARAMETER.
 # Run an STM model using the 'out' data with 20 topics. Ask how prevalence of topics 
-# varies across documents' meta data, including 'rating' and day. The option 's(day)' 
+# varies across documents' meta data, including 'rating' and 'day'. The option 's(day)' 
 # applies a spline normalization to 'day' variable. The authors specified the maximum
 # number of expectation-maximization iterations = 75, and the seed they are using for 
 # reproducibility.
@@ -79,7 +79,7 @@ dev.off()
 # ----------------------------------------
 
 # SEARCH AND SELECT MODEL FOR A FIXED NUMBER OF TOPICS.
-# The function 'selectModel' assists the user in finding and selecting a model with
+# The function selectModel() assists the user in finding and selecting a model with
 # desirable properties in both semantic coherence and exclusivity dimensions (e.g.,
 # models with average scores towards the upper right side of the plot). STM will
 # compare a number of models side by side and will keep the models that do not 
@@ -94,7 +94,7 @@ plotModels(poliblogSelect)
 dev.off()
 
 # Each STM has semantic coherence and exclusivity values associated with each topic. 
-# The topicQuality' fucntion plots these values and labels each with its topic number.
+# The topicQuality() function plots these values and labels each with its topic number.
 # Save plot as pdf file.
 pdf("stm-plot-topic-quality.pdf", width=10, height=8.5)
 topicQuality(model=poliblogPrevFit, documents=docs)
@@ -104,11 +104,11 @@ dev.off()
 # exclusivity values (upper right corner of plot).
 selectedModel3 <- poliblogSelect$runout[[3]] # Choose model #3
 
-# Another option is the 'manyTopics' function that performs model selection across
+# Another option is the manyTopics() function that performs model selection across
 # separate STMs that each assume different number of topics. It works the same as 
-# 'selectModel', except user specifies a range of numbers of topics that they want 
+# selectModel(), except user specifies a range of numbers of topics that they want 
 # the model fitted for. For example, models with 5, 10, and 15 topics. Then, for 
-# each number of topics, 'selectModel' is run multiple times. The output is then 
+# each number of topics, selectModel() is run multiple times. The output is then 
 # processed through a function that takes a pareto dominant run of the model in 
 # terms of exclusivity and semantic coherence. If multiple runs are candidates 
 # (i.e., none weakly dominates the others), a single model run is randomly chosen 
@@ -134,7 +134,7 @@ dev.off()
 
 # ALTERNATIVE: MODEL SEARCH ACROSS A NUMBER OF TOPICS.
 # Let R figure out the best model for you defined by exclusivity and semantic 
-# coherence for each K (i.e. # of topics). The function 'searchK' uses a data-driven
+# coherence for each K (i.e. # of topics). The searchK() uses a data-driven
 # approach to selecting the number of topics. Save plot as pdf file.
 kResult <- searchK(out$documents, out$vocab, K=c(7,10), prevalence=~rating+s(day),
                    data=meta)
@@ -148,10 +148,10 @@ dev.off()
 
 # According to the package vignette, there are a number of ways to interpret the model
 # results. These include:
-# 1. Displaying words associated with topics: labelTopics, sageLabels
-# 2. Displaying documents highly associated with particular topics: findThoughts
-# 3. Estimating relationships between metadata and topics: estimateEffect
-# 4. Estimating topic correlations: topicCorr
+# 1. Displaying words associated with topics: labelTopics(), sageLabels()
+# 2. Displaying documents highly associated with particular topics: findThoughts()
+# 3. Estimating relationships between metadata and topics: estimateEffect()
+# 4. Estimating topic correlations: topicCorr()
 
 # LABELTOPICS.
 # Label topics by listing top words for selected topics 3, 7, 20. Save as txt file.
@@ -166,7 +166,7 @@ print(labelTopicsAll)
 sink()
 
 # SAGELABELS.
-# This can be used as a more detailed alternative to labelTopics. The function displays
+# This can be used as a more detailed alternative to labelTopics(). The function displays
 # verbose labels that describe topics and topic-covariate groups in depth.
 sink("stm-list-sagelabel.txt", append=FALSE, split=TRUE)
 print(sageLabels(poliblogPrevFit))
@@ -221,7 +221,7 @@ dev.off()
 
 # See how prevalence of topics differs across values of a continuous covariate
 pdf("stm-plot-estimate-effect-continuous.pdf", width=10, height=8.5)
-plot(prep, "day", method="continuous", topics=7, model=z, printlegend=FALSE, xaxt="n", 
+plot(prep, "day", method="continuous", topics=20, model=z, printlegend=FALSE, xaxt="n", 
      xlab="Time (2008)")
 monthseq <- seq(from=as.Date("2008-01-01"), to=as.Date("2008-12-01"), by="month")
 monthnames <- months(monthseq)
