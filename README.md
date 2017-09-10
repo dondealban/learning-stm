@@ -12,7 +12,7 @@ The dataset used to illustrate the `stm` package, as used in the vignette, is a 
 I copied the dataset into this repository for easier replication. The original links to the example datasets can be found in the vignette and in the R script. 
 
 ## An `stm` Workflow Example
-I implemented the following workflow for generating structural topic models in R software. Note that this workflow follows a general outline so I can explore most of the `stm` functions and see how to implement them. Users can modify this to suit their objectives.
+I implemented the following workflow for generating structural topic models in R software. Note that this workflow follows the steps outlined in the vignette so I can explore most of the `stm` functions and see how to implement them. Users can modify this to suit their objectives.
 
 ### A. Ingest
 
