@@ -59,7 +59,8 @@ poliblogPrevFit <- stm(out$documents, out$vocab, K=20, prevalence=~rating+s(day)
                        max.em.its=75, data=out$meta, init.type="Spectral", 
                        seed=8458159)
 
-# Plot the STM using different types. Save as pdf files.
+# Plot the STM using different types. See the proportion of each topic in the entire
+# corpus. Save as pdf files.
 pdf("stm-plot-prevfit.pdf", width=10, height=8.5)
 plot(poliblogPrevFit)
 dev.off()
@@ -171,6 +172,29 @@ sink("stm-list-sagelabel.txt", append=FALSE, split=TRUE)
 print(sageLabels(poliblogPrevFit))
 sink()
 
+# FINDTHOUGHTS.
+# Read documents that are highly correlated with the user-specified topics using the 
+# findThoughts() function.
 
-
-
+# Object 'thoughts1' contains 3 documents about topic 1 and 'texts=shortdoc' gives
+# just the first 250 words. Additional examples are done for topics 3,7,10, and 20.
+thoughts1 <- findThoughts(poliblogPrevFit, texts=shortdoc, n=3, topics=1)$docs[[1]]
+pdf("stm-plot-find-thoughts1.pdf", width=10, height=8.5)
+plotQuote(thoughts1, width=40, main="Topic 1")
+dev.off()
+thoughts3 <- findThoughts(poliblogPrevFit, texts=shortdoc, n=3, topics=3)$docs[[1]]
+pdf("stm-plot-find-thoughts3.pdf", width=10, height=8.5)
+plotQuote(thoughts3, width=40, main="Topic 3")
+dev.off()
+thoughts7 <- findThoughts(poliblogPrevFit, texts=shortdoc, n=3, topics=7)$docs[[1]]
+pdf("stm-plot-find-thoughts7.pdf", width=10, height=8.5)
+plotQuote(thoughts7, width=40, main="Topic 7")
+dev.off()
+thoughts10 <- findThoughts(poliblogPrevFit, texts=shortdoc, n=3, topics=10)$docs[[1]]
+pdf("stm-plot-find-thoughts10.pdf", width=10, height=8.5)
+plotQuote(thoughts10, width=40, main="Topic 10")
+dev.off()
+thoughts20 <- findThoughts(poliblogPrevFit, texts=shortdoc, n=3, topics=20)$docs[[1]]
+pdf("stm-plot-find-thoughts20.pdf", width=10, height=8.5)
+plotQuote(thoughts20, width=40, main="Topic 20")
+dev.off()
