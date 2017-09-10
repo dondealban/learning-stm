@@ -174,10 +174,9 @@ sink()
 
 # FINDTHOUGHTS.
 # Read documents that are highly correlated with the user-specified topics using the 
-# findThoughts() function.
-
-# Object 'thoughts1' contains 3 documents about topic 1 and 'texts=shortdoc' gives
-# just the first 250 words. Additional examples are done for topics 3,7,10, and 20.
+# findThoughts() function. Object 'thoughts1' contains 3 documents about topic 1 and
+# 'texts=shortdoc' gives just the first 250 words. Additional examples are done for
+# topics 3,7,10, and 20.
 thoughts1 <- findThoughts(poliblogPrevFit, texts=shortdoc, n=3, topics=1)$docs[[1]]
 pdf("stm-plot-find-thoughts1.pdf", width=10, height=8.5)
 plotQuote(thoughts1, width=40, main="Topic 1")
@@ -197,4 +196,34 @@ dev.off()
 thoughts20 <- findThoughts(poliblogPrevFit, texts=shortdoc, n=3, topics=20)$docs[[1]]
 pdf("stm-plot-find-thoughts20.pdf", width=10, height=8.5)
 plotQuote(thoughts20, width=40, main="Topic 20")
+dev.off()
+
+# ESTIMATEEFFECT.
+# Explore how prevalence of topics varies across documents according to document
+# covariates (metadata). First, users must specify the variable that they wish to use 
+# for calculating an effect. If there are multiple variables specified in 
+# estimateEffect(), then all other variables are held at their sample median. These 
+# parameters include the expected proportion of a document that belongs to a topic as
+# a function of a covariate, or a first difference type estimate, where topic prevalence
+# for a particular topic is contrasted for two groups (e.g., liberal versus conservative).
+out$meta$rating <- as.factor(out$meta$rating)
+prep <- estimateEffect(1:20 ~ rating+s(day), poliblogPrevFit, meta=out$meta, 
+                       uncertainty="Global")
+
+# See how prevalence of topics differs across values of a categorical covariate
+pdf("stm-plot-estimate-effect-categorical.pdf", width=10, height=8.5)
+plot(prep, covariate="rating", topics=c(3, 7, 20), model=poliblogPrevFit, 
+     method="difference", cov.value1="Liberal", cov.value2="Conservative",
+     xlab="More Conservative ... More Liberal", main="Effect of Liberal vs. Conservative",
+     xlim=c(-.15,.15), labeltype ="custom", custom.labels=c('Obama', 'Sarah Palin', 
+                                                          'Bush Presidency'))
+dev.off()
+
+# See how prevalence of topics differs across values of a continuous covariate
+pdf("stm-plot-estimate-effect-continuous.pdf", width=10, height=8.5)
+plot(prep, "day", method="continuous", topics=7, model=z, printlegend=FALSE, xaxt="n", 
+     xlab="Time (2008)")
+monthseq <- seq(from=as.Date("2008-01-01"), to=as.Date("2008-12-01"), by="month")
+monthnames <- months(monthseq)
+axis(1, at=as.numeric(monthseq)-min(as.numeric(monthseq)), labels=monthnames)
 dev.off()
