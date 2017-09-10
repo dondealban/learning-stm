@@ -73,6 +73,9 @@ dev.off()
 pdf("stm-plot-prevfit-histogram.pdf", width=14, height=12.5)
 plot(poliblogPrevFit, type="hist")
 dev.off()
+pdf("stm-plot-prevfit-perspectives-two-topic.pdf", width=14, height=12.5)
+plot(poliblogPrevFit, type="perspectives", topics=c(7,10))
+dev.off()
 
 # ----------------------------------------
 # EVALUATE MODELS
@@ -153,7 +156,7 @@ dev.off()
 # 3. Estimating relationships between metadata and topics: estimateEffect()
 # 4. Estimating topic correlations: topicCorr()
 
-# LABELTOPICS.
+# labelTopics().
 # Label topics by listing top words for selected topics 3, 7, 20. Save as txt file.
 labelTopicsSel <- labelTopics(poliblogPrevFit, c(3,7,20))
 sink("stm-list-label-topics-selected.txt", append=FALSE, split=TRUE)
@@ -165,14 +168,14 @@ sink("stm-list-label-topics-all.txt", append=FALSE, split=TRUE)
 print(labelTopicsAll)
 sink()
 
-# SAGELABELS.
+# sageLabels().
 # This can be used as a more detailed alternative to labelTopics(). The function displays
 # verbose labels that describe topics and topic-covariate groups in depth.
 sink("stm-list-sagelabel.txt", append=FALSE, split=TRUE)
 print(sageLabels(poliblogPrevFit))
 sink()
 
-# FINDTHOUGHTS.
+# findThoughts().
 # Read documents that are highly correlated with the user-specified topics using the 
 # findThoughts() function. Object 'thoughts1' contains 3 documents about topic 1 and
 # 'texts=shortdoc' gives just the first 250 words. Additional examples are done for
@@ -198,7 +201,7 @@ pdf("stm-plot-find-thoughts20.pdf", width=10, height=8.5)
 plotQuote(thoughts20, width=40, main="Topic 20")
 dev.off()
 
-# ESTIMATEEFFECT.
+# estimateEffect().
 # Explore how prevalence of topics varies across documents according to document
 # covariates (metadata). First, users must specify the variable that they wish to use 
 # for calculating an effect. If there are multiple variables specified in 
@@ -227,3 +230,26 @@ monthseq <- seq(from=as.Date("2008-01-01"), to=as.Date("2008-12-01"), by="month"
 monthnames <- months(monthseq)
 axis(1, at=as.numeric(monthseq)-min(as.numeric(monthseq)), labels=monthnames)
 dev.off()
+
+# topicCorr().
+# STM permits correlations between topics. Positive correlations between topics indicate
+# that both topics are likely to be discussed within a document. A graphical network
+# display shows how closely related topics are to one another (i.e., how likely they are
+# to appear in the same document). This function requires 'igraph' package.
+mod.out.corr <- topicCorr(poliblogPrevFit)
+pdf("stm-plot-topic-correlations.pdf", width=10, height=8.5)
+plot(mod.out.corr)
+dev.off()
+
+# ----------------------------------------
+# VISUALISE &  PRESENT STMs RESULTS
+# ----------------------------------------
+
+# TOPICAL CONTENT.
+# STM can plot the influence of covariates included in as a topical content covariate.
+# A topical content variable allows for the vocabulary used to talk about a particular 
+# topic to vary. First, the STM must be fit with a variable specified in the content 
+# option.
+poliblogContent <- stm(out$documents, out$vocab, K=20, prevalence=~rating+s(day), 
+                       content=~rating, max.em.its=75, data=out$meta, 
+                       init.type="Spectral", seed=8458159)
