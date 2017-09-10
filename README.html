@@ -148,7 +148,7 @@ library(stmCorrViz) # Package for hierarchical correlation view of STMs</code></
 </div>
 <div id="load-data" class="section level5">
 <h5>2. Load data</h5>
-<p>As described above, the dataset used include a CSV file (poliblogs2008.csv) and an RData file (VignetteObjects.RData), which contains a pre-processed texts by the package authors named ‘shortdoc’ that was used for their vignette example. Having the RData file can be used to reduce compiling time by not running the models and instead load a workspace with the models already estimated. (Note these source links to the <a href="https://goo.gl/4ohgr4">CSV</a> and <a href="https://goo.gl/xK17EQ">RData</a> files.</p>
+<p>As described above, the dataset used include a CSV file (poliblogs2008.csv) and an RData file (VignetteObjects.RData), which contains a pre-processed texts by the package authors named ‘shortdoc’ that was used for their vignette example. Having the RData file can be used to reduce compiling time by not running the models and instead load a workspace with the models already estimated. (Note these source links to the <a href="https://goo.gl/4ohgr4">CSV</a> and <a href="https://goo.gl/xK17EQ">RData</a> files.)</p>
 <pre class="r"><code>data &lt;- read.csv(&quot;poliblogs2008.csv&quot;) 
 load(&quot;VignetteObjects.RData&quot;) </code></pre>
 </div>
@@ -159,15 +159,16 @@ load(&quot;VignetteObjects.RData&quot;) </code></pre>
 <h5>3. Pre-process the data</h5>
 <p>For data preparation, first, stemming and stopword removal were done using the <code>textProcessor()</code> function:</p>
 <pre class="r"><code>processed &lt;- textProcessor(data$documents, metadata=data)</code></pre>
-<p>Then, <code>prepDocuments</code> is used to structure and index the data for usage in the structural topic model. The object should have no missing values. Low frequency words can be removed using the ‘lower.thresh’ option. See <code>?prepDocuments</code> for more information.</p>
+<p>Then, <code>prepDocuments()</code> was used to structure and index the data for usage in the structural topic model. The object should have no missing values. Low frequency words can be removed using the ‘lower.thresh’ option. See <code>?prepDocuments</code> for more information.</p>
 <pre class="r"><code>out &lt;- prepDocuments(processed$documents, processed$vocab, processed$meta)</code></pre>
 <p>Next, save the output object meta, documents, and vocab into variables:</p>
 <pre class="r"><code>docs &lt;- out$documents
 vocab &lt;- out$vocab
 meta &lt;- out$meta</code></pre>
-<p>To check how many words and documents would be removed using different lower thresholds, the following command can be used:</p>
+<p>To check how many words and documents would be removed using different lower thresholds, <code>plotRemoved()</code> can be used:</p>
 <pre class="r"><code>plotRemoved(processed$documents, lower.thresh=seq(1,200, by=100))</code></pre>
 <p>The plot below shows the documents, words, and tokens removed using the specified threshold.</p>
+<p>…to be continued…</p>
 </div>
 </div>
 </div>

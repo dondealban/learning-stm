@@ -26,7 +26,7 @@ library(stmCorrViz) # Package for hierarchical correlation view of STMs
 ```
 
 ##### 2. Load data
-As described above, the dataset used include a CSV file (poliblogs2008.csv) and an RData file (VignetteObjects.RData), which contains a pre-processed texts by the package authors named 'shortdoc' that was used for their vignette example. Having the RData file can be used to reduce compiling time by not running the models and instead load a workspace with the models already estimated. (Note these source links to the [CSV](https://goo.gl/4ohgr4) and [RData](https://goo.gl/xK17EQ) files.
+As described above, the dataset used include a CSV file (poliblogs2008.csv) and an RData file (VignetteObjects.RData), which contains a pre-processed texts by the package authors named 'shortdoc' that was used for their vignette example. Having the RData file can be used to reduce compiling time by not running the models and instead load a workspace with the models already estimated. (Note these source links to the [CSV](https://goo.gl/4ohgr4) and [RData](https://goo.gl/xK17EQ) files.)
 
 ```R
 data <- read.csv("poliblogs2008.csv") 
@@ -42,7 +42,7 @@ For data preparation, first, stemming and stopword removal were done using the `
 processed <- textProcessor(data$documents, metadata=data)
 ```
 
-Then, `prepDocuments` is used to structure and index the data for usage in the structural topic model. The object should have no missing values. Low frequency words can be removed using the 'lower.thresh' option. See `?prepDocuments` for more information.
+Then, `prepDocuments()` was used to structure and index the data for usage in the structural topic model. The object should have no missing values. Low frequency words can be removed using the 'lower.thresh' option. See `?prepDocuments` for more information.
 ```R
 out <- prepDocuments(processed$documents, processed$vocab, processed$meta)
 ```
@@ -54,12 +54,13 @@ vocab <- out$vocab
 meta <- out$meta
 ```
 
-To check how many words and documents would be removed using different lower thresholds, the following command can be used:
+To check how many words and documents would be removed using different lower thresholds, `plotRemoved()` can be used:
 ```R
 plotRemoved(processed$documents, lower.thresh=seq(1,200, by=100))
 ```
 The plot below shows the documents, words, and tokens removed using the specified threshold.
 
+...to be continued...
 
 ## References
 
