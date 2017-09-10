@@ -253,3 +253,9 @@ dev.off()
 poliblogContent <- stm(out$documents, out$vocab, K=20, prevalence=~rating+s(day), 
                        content=~rating, max.em.its=75, data=out$meta, 
                        init.type="Spectral", seed=8458159)
+pdf("stm-plot-content-perspectives.pdf", width=10, height=8.5)
+plot(poliblogContent, type="perspectives", topics=7)
+dev.off()
+
+# WORD CLOUD.
+cloud(poliblogPrevFit, topic=7)
