@@ -11,7 +11,18 @@ To learn and understand a typical workflow of structural topic modeling using th
 The dataset used to illustrate the `stm` package, as used in the vignette, is a collection of blogposts about American politics written in 2008 put together by the Carnegie Mellon University 2008 Political Blog Corpus [(Eisenstein & Xing 2010)](#eisenstein_xing_2010). 
 I copied the dataset into this repository for easier replication. The original links to the example datasets can be found in the vignette and in the R script. 
 
-## `stm` Workflow Example
+## An `stm` Workflow Example
+I implemented the following workflow for generating structural topic models in R software. Note that this workflow follows a general outline to explore most of the `stm` functions, which you can modify to suit your objective.
+
+###### 1. Load Libraries
+
+The following R packages were used for this exercise: `stm`, `stmCorrViz`, and `igraph`. To load these packages we can write:
+
+```R
+library(stm)        # Package for sturctural topic modeling
+library(igraph)     # Package for network analysis and visualisation
+library(stmCorrViz) # Package for hierarchical correlation view of STMs
+```
 
 
 

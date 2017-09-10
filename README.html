@@ -134,8 +134,16 @@ $(document).ready(function () {
 <h2>Dataset</h2>
 <p>The dataset used to illustrate the <code>stm</code> package, as used in the vignette, is a collection of blogposts about American politics written in 2008 put together by the Carnegie Mellon University 2008 Political Blog Corpus <a href="#eisenstein_xing_2010">(Eisenstein &amp; Xing 2010)</a>. I copied the dataset into this repository for easier replication. The original links to the example datasets can be found in the vignette and in the R script.</p>
 </div>
-<div id="stm-workflow-example" class="section level2">
-<h2><code>stm</code> Workflow Example</h2>
+<div id="an-stm-workflow-example" class="section level2">
+<h2>An <code>stm</code> Workflow Example</h2>
+<p>I implemented the following workflow for generating structural topic models in R software.</p>
+<div id="load-libraries" class="section level6">
+<h6>1. Load Libraries</h6>
+<p>The following R packages were used for this exercise: <code>stm</code>, <code>stmCorrViz</code>, and <code>igraph</code>. To load these packages we can write:</p>
+<pre class="r"><code>library(stm)        # Package for sturctural topic modeling
+library(igraph)     # Package for network analysis and visualisation
+library(stmCorrViz) # Package for hierarchical correlation view of STMs</code></pre>
+</div>
 </div>
 <div id="references" class="section level2">
 <h2>References</h2>
