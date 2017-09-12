@@ -15,10 +15,9 @@ I copied the dataset into this repository for easier replication. The original l
 I implemented the following workflow for generating structural topic models in R software. Note that this workflow follows the steps outlined in the vignette so I can explore most of the `stm` functions and see how to implement them. Users can modify this to suit their objectives.
 
 
-#### A. Ingest
+### A. Ingest
 
 The following R packages or libraries were used for this exercise: `stm`, `stmCorrViz`, and `igraph`. To load these packages we can write:
-
 ```R
 library(stm)        # Package for sturctural topic modeling
 library(igraph)     # Package for network analysis and visualisation
@@ -26,13 +25,12 @@ library(stmCorrViz) # Package for hierarchical correlation view of STMs
 ```
 
 As described above, the dataset used include a CSV file (poliblogs2008.csv) and an RData file (VignetteObjects.RData), which contains a pre-processed texts by the package authors named 'shortdoc' that was used for their vignette example. Having the RData file can be used to reduce compiling time by not running the models and instead load a workspace with the models already estimated. (Note these source links to the [CSV](https://goo.gl/4ohgr4) and [RData](https://goo.gl/xK17EQ) files.)
-
 ```R
 data <- read.csv("poliblogs2008.csv") 
 load("VignetteObjects.RData") 
 ```
 
-#### B. Prepare
+### B. Prepare
 
 For data preparation, first, stemming and stopword removal were done using the `textProcessor()` function:
 ```R
@@ -59,7 +57,7 @@ plotRemoved(processed$documents, lower.thresh=seq(1,200, by=100))
 *Plot of the documents, words, and tokens removed using the specified threshold*
 ![plotRemoved](https://github.com/dondealban/learning-stm/blob/master/outputs/stm-plot-removed.png)
 
-#### C. Estimate
+### C. Estimate
 
 Next, I estimated the structural topic model with the topic prevalence parameter. To do this, execute an STM model using the 'out' data with 20 topics. Here we can ask how prevalence of topics varies across documents' meta data, including 'rating' and 'day'. The option 's(day)' applies a spline normalization to 'day' variable. The `stm` R package authors specified the maximum number of expectation-maximization iterations = 75, and the seed they used for reproducibility.
 ```R
@@ -93,6 +91,22 @@ plot(poliblogPrevFit, type="hist")
 plot(poliblogPrevFit, type="perspectives", topics=c(7,10))
 ```
 ![prevfit-hist](https://github.com/dondealban/learning-stm/blob/master/outputs/stm-plot-prevfit-perspectives-two-topic.png)
+
+### D. Evaluate
+
+##### Search and select model for a fixed number of topics
+The function selectModel() assists the user in finding and selecting a model with desirable properties in both semantic coherence and exclusivity dimensions (e.g., models with average scores towards the upper right side of the plot). STM will compare a number of models side by side and will keep the models that do not converge quickly. 
+```R
+poliblogSelect <- selectModel(out$documents, out$vocab, K=20, prevalence=~rating+s(day),
+                              max.em.its=75, data=meta, runs=20, seed=8458159)
+```
+
+Each STM has semantic coherence and exclusivity values associated with each topic. Plotting the different models that make the cut along exclusivity and semantic coherence of their topics would show:
+```R
+plotModels(poliblogSelect)
+```
+![plot-selected](https://github.com/dondealban/learning-stm/blob/master/outputs/stm-plot-selected.png)
+
 
 ...to be continued...
 
