@@ -14,7 +14,8 @@ I copied the dataset into this repository for easier replication. The original l
 ## An `stm` Workflow Example
 I implemented the following workflow for generating structural topic models in R software. Note that this workflow follows the steps outlined in the vignette so I can explore most of the `stm` functions and see how to implement them. Users can modify this to suit their objectives.
 
-### A. Ingest
+
+#### A. Ingest
 
 ##### 1. Load libraries
 The following R packages were used for this exercise: `stm`, `stmCorrViz`, and `igraph`. To load these packages we can write:
@@ -33,7 +34,7 @@ data <- read.csv("poliblogs2008.csv")
 load("VignetteObjects.RData") 
 ```
 
-### B. Prepare
+#### B. Prepare
 
 ##### 3. Pre-process the data
 
@@ -58,11 +59,44 @@ To check how many words and documents would be removed using different lower thr
 ```R
 plotRemoved(processed$documents, lower.thresh=seq(1,200, by=100))
 ```
-The plot below shows the documents, words, and tokens removed using the specified threshold.
 
-![plotRemoved](https://github.com/dondealban/learning-stm/blob/master/outputs/stm-plot-removed.png "Plot of removed documents, words, and tokens")
+*Plot of the documents, words, and tokens removed using the specified threshold*
+![plotRemoved](https://github.com/dondealban/learning-stm/blob/master/outputs/stm-plot-removed.png)
 
+#### C. Estimate
 
+Next, I estimated the structural topic model with the topic prevalence parameter. To do this, execute an STM model using the 'out' data with 20 topics. Here we can ask how prevalence of topics varies across documents' meta data, including 'rating' and 'day'. The option 's(day)' applies a spline normalization to 'day' variable. The `stm` R package authors specified the maximum number of expectation-maximization iterations = 75, and the seed they used for reproducibility.
+```R
+poliblogPrevFit <- stm(out$documents, out$vocab, K=20, prevalence=~rating+s(day), 
+                       max.em.its=75, data=out$meta, init.type="Spectral", 
+                       seed=8458159)
+```
+
+The model can then be plotted in different types such as:
+
+*The summary model with 20 topics*
+```R
+plot(poliblogPrevFit, type="summary", xlim=c(0,.4))
+```
+![prevfit-summary](https://github.com/dondealban/learning-stm/blob/master/outputs/stm-plot-prevfit.png)
+
+*The most frequent words in the model such as for topics #3, #7, and #20*
+```R
+plot(poliblogPrevFit, type="labels", topics=c(3,7,20))
+```
+![prevfit-labels](https://github.com/dondealban/learning-stm/blob/master/outputs/stm-plot-prevfit-labels.png)
+
+*The histograms of topics*
+```R
+plot(poliblogPrevFit, type="hist")
+```
+![prevfit-hist](https://github.com/dondealban/learning-stm/blob/master/outputs/stm-plot-prevfit-histogram.png)
+
+*A comparison of two topics such as topics #7 and #10*
+```R
+plot(poliblogPrevFit, type="perspectives", topics=c(7,10))
+```
+![prevfit-hist](https://github.com/dondealban/learning-stm/blob/master/outputs/stm-plot-prevfit-perspectives-two-topic.png)
 
 ...to be continued...
 
