@@ -17,8 +17,7 @@ I implemented the following workflow for generating structural topic models in R
 
 #### A. Ingest
 
-##### 1. Load libraries
-The following R packages were used for this exercise: `stm`, `stmCorrViz`, and `igraph`. To load these packages we can write:
+The following R packages or libraries were used for this exercise: `stm`, `stmCorrViz`, and `igraph`. To load these packages we can write:
 
 ```R
 library(stm)        # Package for sturctural topic modeling
@@ -26,7 +25,6 @@ library(igraph)     # Package for network analysis and visualisation
 library(stmCorrViz) # Package for hierarchical correlation view of STMs
 ```
 
-##### 2. Load data
 As described above, the dataset used include a CSV file (poliblogs2008.csv) and an RData file (VignetteObjects.RData), which contains a pre-processed texts by the package authors named 'shortdoc' that was used for their vignette example. Having the RData file can be used to reduce compiling time by not running the models and instead load a workspace with the models already estimated. (Note these source links to the [CSV](https://goo.gl/4ohgr4) and [RData](https://goo.gl/xK17EQ) files.)
 
 ```R
@@ -35,8 +33,6 @@ load("VignetteObjects.RData")
 ```
 
 #### B. Prepare
-
-##### 3. Pre-process the data
 
 For data preparation, first, stemming and stopword removal were done using the `textProcessor()` function:
 ```R
