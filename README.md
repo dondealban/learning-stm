@@ -59,7 +59,7 @@ plotRemoved(processed$documents, lower.thresh=seq(1,200, by=100))
 
 ### C. Estimate
 
-Next, I estimated the structural topic model with the topic prevalence parameter. To do this, execute an STM model using the 'out' data with 20 topics. Here we can ask how prevalence of topics varies across documents' meta data, including 'rating' and 'day'. The option 's(day)' applies a spline normalization to 'day' variable. The `stm` R package authors specified the maximum number of expectation-maximization iterations = 75, and the seed they used for reproducibility.
+Next, I estimated the structural topic model with the topic prevalence parameter. To do this, execute an `stm` model using the 'out' data with 20 topics. Here we can ask how prevalence of topics varies across documents' meta data, including 'rating' and 'day'. The option 's(day)' applies a spline normalization to 'day' variable. The `stm` R package authors specified the maximum number of expectation-maximization iterations = 75, and the seed they used for reproducibility.
 ```R
 poliblogPrevFit <- stm(out$documents, out$vocab, K=20, prevalence=~rating+s(day), 
                        max.em.its=75, data=out$meta, init.type="Spectral", 
