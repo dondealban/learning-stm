@@ -59,7 +59,7 @@ plotRemoved(processed$documents, lower.thresh=seq(1,200, by=100))
 
 ### C. Estimate
 
-Next, I estimated the structural topic model with the topic prevalence parameter. To do this, execute an `stm` model using the 'out' data with 20 topics. Here we can ask how prevalence of topics varies across documents' meta data, including 'rating' and 'day'. The option 's(day)' applies a spline normalization to 'day' variable. The `stm` R package authors specified the maximum number of expectation-maximization iterations = 75, and the seed they used for reproducibility.
+Next, estimate the structural topic model with the topic prevalence parameter. To do this, execute an `stm` model using the 'out' data with 20 topics. Here we can ask how prevalence of topics varies across documents' meta data, including 'rating' and 'day'. The option 's(day)' applies a spline normalization to 'day' variable. The `stm` R package authors specified the maximum number of expectation-maximization iterations = 75, and the seed they used for reproducibility.
 ```R
 poliblogPrevFit <- stm(out$documents, out$vocab, K=20, prevalence=~rating+s(day), 
                        max.em.its=75, data=out$meta, init.type="Spectral", 
@@ -113,12 +113,28 @@ topicQuality(model=poliblogPrevFit, documents=docs)
 ```
 ![plot-topicquality](https://github.com/dondealban/learning-stm/blob/master/outputs/stm-plot-topic-quality.png)
 
+Next, select one of the models to work with based on the best semantic coherence and exclusivity values (upper right corner of plot), which in this case can be #3. Selecting this model can be done by:
+```R
+selectedModel3 <- poliblogSelect$runout[[3]] # Choose model #3
+```
 
+Another option is the `manyTopics()` function that performs model selection across separate STMs that each assume different number of topics. It works the same as `selectModel()`, except that the user specifies a range of numbers of topics for fitting the model. For example, models with 5, 10, and 15 topics. Then, for each number of topics, selectModel() is run multiple times. The output is then processed through a function that takes a pareto dominant run of the model in terms of exclusivity and semantic coherence. If multiple runs are candidates (i.e., none weakly dominates the others), a single model run is randomly chosen from the set of undominated runs. 
+```R
+storage <- manyTopics(out$documents, out$vocab, K=c(7:10), prevalence=~rating+s(day),
+                      data=meta, runs=10)
+storageOutput1 <- storage$out[[1]] # For example, choosing the model with 7 topics
+plot(storageOutput1)
+```
+![plot-manytopics](https://github.com/dondealban/learning-stm/blob/master/outputs/stm-plot-storage-output1.png)
 
-
-
-
-
+##### Model search across a number of topics 
+Alternatively, R can be instructed to figure out the best model automatically defined by exclusivity and semantic coherence for each K (i.e. # of topics). The `searchK()` function uses a data-driven approach to selecting the number of topics. 
+```R
+kResult <- searchK(out$documents, out$vocab, K=c(7,10), prevalence=~rating+s(day),
+                   data=meta)
+plot(kResult)
+```
+![plot-searchk](https://github.com/dondealban/learning-stm/blob/master/outputs/stm-plot-searchk.png)
 
 
 
