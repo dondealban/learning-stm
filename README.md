@@ -60,6 +60,10 @@ plotRemoved(processed$documents, lower.thresh=seq(1,200, by=100))
 ```
 The plot below shows the documents, words, and tokens removed using the specified threshold.
 
+![plotRemoved](https://github.com/dondealban/learning-stm/blob/master/outputs/stm-plot-removed.png "Plot of removed documents, words, and tokens")
+
+
+
 ...to be continued...
 
 ## References
