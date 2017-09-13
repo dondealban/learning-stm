@@ -5,13 +5,13 @@ This is a repository set up as my personal exercise for learning structural topi
 - [What is a Structural Topic Model?](#stm)
 - [Materials](#materials)
 - [Dataset](#dataset)
-- [An `stm` Workflow Example](#workflow)
-    A. [Ingest](#ingest)
-    B. [Prepare](#prepare)
-    C. [Estimate](#estimate)
-    D. [Evaluate](#evaluate)
-    E. [Understand](#understand)
-    F. [Visualise](#visualise)
+- [An STM Workflow Example](#workflow)
+    + [Ingest](#ingest)
+    + [Prepare](#prepare)
+    + [Estimate](#estimate)
+    + [Evaluate](#evaluate)
+    + [Understand](#understand)
+    + [Visualise](#visualise)
 - [References](#references)
 - [Want to Contribute?](#contribute)
 
@@ -283,6 +283,7 @@ legend(0,0.12, c("Liberal", "Conservative"), lwd=2, col=c("blue", "red"))
 plot(poliblogPrevFit$convergence$bound, type="l", ylab="Approximate Objective", 
      main="Convergence")
 ```
+![plot-convergence](https://github.com/dondealban/learning-stm/blob/master/outputs/stm-plot-prevfit-convergence.png)
 
 ###### Interactive visualisation
 Finally, the `stmCorrViz()` function for the package of the same name generates an interactive visualisation of topic hierarchy/correlations in a structural topicl model. The package performs a hierarchical clustering of topics that are then exported to a JSON object and visualised using D3.
