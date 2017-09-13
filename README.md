@@ -66,25 +66,25 @@ poliblogPrevFit <- stm(out$documents, out$vocab, K=20, prevalence=~rating+s(day)
 
 The model can then be plotted in different types such as:
 
-*The summary model with 20 topics*
+###### The summary model with 20 topics
 ```R
 plot(poliblogPrevFit, type="summary", xlim=c(0,.4))
 ```
 ![prevfit-summary](https://github.com/dondealban/learning-stm/blob/master/outputs/stm-plot-prevfit.png)
 
-*The most frequent words in the model such as for topics #3, #7, and #20*
+###### The most frequent words in the model such as for topics #3, #7, and #20
 ```R
 plot(poliblogPrevFit, type="labels", topics=c(3,7,20))
 ```
 ![prevfit-labels](https://github.com/dondealban/learning-stm/blob/master/outputs/stm-plot-prevfit-labels.png)
 
-*The histograms of topics*
+###### The histograms of topics
 ```R
 plot(poliblogPrevFit, type="hist")
 ```
 ![prevfit-hist](https://github.com/dondealban/learning-stm/blob/master/outputs/stm-plot-prevfit-histogram.png)
 
-*A comparison of two topics such as topics #7 and #10*
+###### A comparison of two topics such as topics #7 and #10
 ```R
 plot(poliblogPrevFit, type="perspectives", topics=c(7,10))
 ```
@@ -217,9 +217,57 @@ plot(mod.out.corr)
 ```
 ![plot-topiccorr](https://github.com/dondealban/learning-stm/blob/master/outputs/stm-plot-topic-correlations.png)
 
+### F. Visualise
 
+###### Topical content
+STM can plot the influence of covariates included in as a topical content covariate. A topical content variable allows for the vocabulary used to talk about a particular topic to vary. First, the STM must be fit with a variable specified in the content option.
+```R
+poliblogContent <- stm(out$documents, out$vocab, K=20, prevalence=~rating+s(day), 
+                       content=~rating, max.em.its=75, data=out$meta, 
+                       init.type="Spectral", seed=8458159)
+plot(poliblogContent, type="perspectives", topics=7)
+```
+![plot-content-perspectives](https://github.com/dondealban/learning-stm/blob/master/outputs/stm-plot-content-perspectives.png)
 
-...to be continued...
+###### Word cloud
+```R
+cloud(poliblogContent, topic=7)
+```
+![plot-content-wordcloud](https://github.com/dondealban/learning-stm/blob/master/outputs/stm-plot-content-wordcloud.png)
+
+###### Covariate interactions
+Interactions between covariates can be examined such that one variable may “moderate” the effect of another variable.
+```R
+poliblogInteraction <- stm(out$documents, out$vocab, K=20, prevalence=~rating*day, 
+                           max.em.its=75, data=out$meta, seed=8458159)
+```
+Then, Prep covariates using the `estimateEffect()` function, only this time, we include the interaction variable. 
+```R
+prep2 <- estimateEffect(c(20) ~ rating*day, poliblogInteraction, metadata=out$meta, 
+                        uncertainty="None")
+plot(prep2, covariate="day", model=poliblogInteraction, method="continuous", xlab="Days",
+     moderator="rating", moderator.value="Liberal", linecol="blue", ylim=c(0,0.12), 
+     printlegend=F)
+plot(prep2, covariate="day", model=poliblogInteraction, method="continuous", xlab="Days",
+     moderator="rating", moderator.value="Conservative", linecol="red", add=T,
+     printlegend=F)
+legend(0,0.12, c("Liberal", "Conservative"), lwd=2, col=c("blue", "red"))
+```
+[plot-interact-est-effect](https://github.com/dondealban/learning-stm/blob/master/outputs/stm-plot-interact-estimate-effect.png)
+
+###### Plot convergence
+```R
+plot(poliblogPrevFit$convergence$bound, type="l", ylab="Approximate Objective", 
+     main="Convergence")
+```
+
+###### Interactive visualisation
+Finally, the `stmCorrViz()` function for the package of the same name generates an interactive visualisation of topic hierarchy/correlations in a structural topicl model. The package performs a hierarchical clustering of topics that are then exported to a JSON object and visualised using D3.
+```R
+stmCorrViz(poliblogPrevFit, "stm-interactive-correlation.html", 
+           documents_raw=data$documents, documents_matrix=out$documents)
+```
+To see the results, open the [HTML](https://github.com/dondealban/learning-stm/blob/master/outputs/stm-interactive-correlation.html) file output on a browser.
 
 ## References
 
@@ -231,3 +279,6 @@ Roberts, M.E., Stewart, B.M. & Airoldi, E.M. (2016) A model of text for experime
 
 <a name="roberts_etal_2017"></a>
 Roberts, M.E., Stewart, B.M. Tingley, D. & Benoit, K. (2017) stm: Estimation of the Structural Topic Model. [(https://cran.r-project.org/web/packages/stm/index.html)](https://cran.r-project.org/web/packages/stm/index.html)
+
+## Want to contribute?
+In case you wish to contribute or suggest changes, please feel free to fork this repository. Commit your changes and submit a pull request. Thanks.
