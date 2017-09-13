@@ -1,20 +1,38 @@
 # Learning Structural Topic Modeling
-This is a repository set up as my personal exercise for learning structural topic modeling, a method utilising machine learning techniques for automated content analysis of textual data.  
+This is a repository set up as my personal exercise for learning structural topic modeling, a method utilising machine learning techniques for automated content analysis of textual data. It can also be used as a tutorial for someone interested in learning structural topic modeling for their research projects.
 
+## Table of Contents
+- [What is a Structural Topic Model?](#stm)
+- [Materials](#materials)
+- [Dataset](#dataset)
+- [An `stm` Workflow Example](#workflow)
+    A. [Ingest](#ingest)
+    B. [Prepare](#prepare)
+    C. [Estimate](#estimate)
+    D. [Evaluate](#evaluate)
+    E. [Understand](#understand)
+    F. [Visualise](#visualise)
+- [References](#references)
+- [Want to Contribute?](#contribute)
+
+<a name="stm"></a>
 ## What is a Structural Topic Model?
 A Structural Topic Model is a general framework for topic modeling with document-level covariate information, which can improve inference and qualitative interpretability by affecting topical prevalence, topic content, or both [(Roberts et al. 2016)](#roberts_etal_2016). The goal of the Structural Topic Model is to allow researchers to discover topics and estimate their relationships to document metadata where the outputs of the models can be used for hypothesis testing of these relationships. The [`stm`](http://www.structuraltopicmodel.com) R package implements the estimation algorithms for the model and includes tools for every stage of a standard workflow including model estimation, summary, and visualisation.
 
+<a name="materials"></a>
 ## Materials
 To learn and understand a typical workflow of structural topic modeling using the `stm` R package [(Roberts et al. 2017)](#roberts_etal_2017), I followed the instructions from the `stm` package [vignette](https://github.com/bstewart/stm/blob/master/inst/doc/stmVignette.pdf?raw=true), which contains a short technical overview of structural topic models and a demonstration of the basic usage of the package through examples of the functions used in a typical workflow. Also, I referred to the scripts from Nick B. Adams' [D-Lab Text Analysis Working Group](https://github.com/nickbadams/D-Lab_TextAnalysisWorkingGroup) with some additions for this learning exercise.
 
+<a name="dataset"></a>
 ## Dataset
 The dataset used to illustrate the `stm` package, as used in the vignette, is a collection of blogposts about American politics written in 2008 put together by the Carnegie Mellon University 2008 Political Blog Corpus [(Eisenstein & Xing 2010)](#eisenstein_xing_2010). 
 I copied the dataset into this repository for easier replication. The original links to the example datasets can be found in the vignette and in the R script. 
 
+<a name="workflow"></a>
 ## An `stm` Workflow Example
 I implemented the following workflow for generating structural topic models in R software. Note that this workflow follows the steps outlined in the vignette so I can explore most of the `stm` functions and see how to implement them. Users can modify this to suit their objectives.
 
-
+<a name="ingest"></a>
 ### A. Ingest
 
 The following R packages or libraries were used for this exercise: `stm`, `stmCorrViz`, and `igraph`. To load these packages we can write:
@@ -30,6 +48,7 @@ data <- read.csv("poliblogs2008.csv")
 load("VignetteObjects.RData") 
 ```
 
+<a name="prepare"></a>
 ### B. Prepare
 
 For data preparation, first, stemming and stopword removal were done using the `textProcessor()` function:
@@ -55,6 +74,7 @@ plotRemoved(processed$documents, lower.thresh=seq(1,200, by=100))
 ```
 ![plotRemoved](https://github.com/dondealban/learning-stm/blob/master/outputs/stm-plot-removed.png)
 
+<a name="estimate"></a>
 ### C. Estimate
 
 Next, estimate the structural topic model with the topic prevalence parameter. To do this, execute an `stm` model using the 'out' data with 20 topics. Here we can ask how prevalence of topics varies across documents' meta data, including 'rating' and 'day'. The option 's(day)' applies a spline normalization to 'day' variable. The `stm` R package authors specified the maximum number of expectation-maximization iterations = 75, and the seed they used for reproducibility.
@@ -90,6 +110,7 @@ plot(poliblogPrevFit, type="perspectives", topics=c(7,10))
 ```
 ![prevfit-hist](https://github.com/dondealban/learning-stm/blob/master/outputs/stm-plot-prevfit-perspectives-two-topic.png)
 
+<a name="evaluate"></a>
 ### D. Evaluate
 
 ###### Search and select model for a fixed number of topics
@@ -116,7 +137,7 @@ Next, select one of the models to work with based on the best semantic coherence
 selectedModel3 <- poliblogSelect$runout[[3]] # Choose model #3
 ```
 
-Another option is the `manyTopics()` function that performs model selection across separate STMs that each assume different number of topics. It works the same as `selectModel()`, except that the user specifies a range of numbers of topics for fitting the model. For example, models with 5, 10, and 15 topics. Then, for each number of topics, selectModel() is run multiple times. The output is then processed through a function that takes a pareto dominant run of the model in terms of exclusivity and semantic coherence. If multiple runs are candidates (i.e., none weakly dominates the others), a single model run is randomly chosen from the set of undominated runs. 
+Another option is the `manyTopics()` function that performs model selection across separate STMs that each assume different number of topics. It works the same as `selectModel()`, except that the user specifies a range of numbers of topics for fitting the model. For example, models with 5, 10, and 15 topics. Then, for each number of topics, `selectModel()` is run multiple times. The output is then processed through a function that takes a pareto dominant run of the model in terms of exclusivity and semantic coherence. If multiple runs are candidates (i.e., none weakly dominates the others), a single model run is randomly chosen from the set of undominated runs. 
 ```R
 storage <- manyTopics(out$documents, out$vocab, K=c(7:10), prevalence=~rating+s(day),
                       data=meta, runs=10)
@@ -134,6 +155,7 @@ plot(kResult)
 ```
 ![plot-searchk](https://github.com/dondealban/learning-stm/blob/master/outputs/stm-plot-searchk.png)
 
+<a name="understand"></a>
 ### E. Understand
 
 According to the package vignette, there are a number of ways to interpret the model results. These include:
@@ -217,6 +239,7 @@ plot(mod.out.corr)
 ```
 ![plot-topiccorr](https://github.com/dondealban/learning-stm/blob/master/outputs/stm-plot-topic-correlations.png)
 
+<a name="visualise"></a>
 ### F. Visualise
 
 ###### Topical content
@@ -253,7 +276,7 @@ plot(prep2, covariate="day", model=poliblogInteraction, method="continuous", xla
      printlegend=F)
 legend(0,0.12, c("Liberal", "Conservative"), lwd=2, col=c("blue", "red"))
 ```
-[plot-interact-est-effect](https://github.com/dondealban/learning-stm/blob/master/outputs/stm-plot-interact-estimate-effect.png)
+![plot-interact-est-effect](https://github.com/dondealban/learning-stm/blob/master/outputs/stm-plot-interact-estimate-effect.png)
 
 ###### Plot convergence
 ```R
@@ -269,6 +292,7 @@ stmCorrViz(poliblogPrevFit, "stm-interactive-correlation.html",
 ```
 To see the results, open the [HTML](https://github.com/dondealban/learning-stm/blob/master/outputs/stm-interactive-correlation.html) file output on a browser.
 
+<a name="references"></a>
 ## References
 
 <a name="eisenstein_xing_2010"></a>
@@ -280,5 +304,6 @@ Roberts, M.E., Stewart, B.M. & Airoldi, E.M. (2016) A model of text for experime
 <a name="roberts_etal_2017"></a>
 Roberts, M.E., Stewart, B.M. Tingley, D. & Benoit, K. (2017) stm: Estimation of the Structural Topic Model. [(https://cran.r-project.org/web/packages/stm/index.html)](https://cran.r-project.org/web/packages/stm/index.html)
 
-## Want to contribute?
+<a name="contribute"></a>
+## Want to Contribute?
 In case you wish to contribute or suggest changes, please feel free to fork this repository. Commit your changes and submit a pull request. Thanks.
