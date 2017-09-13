@@ -53,8 +53,6 @@ To check how many words and documents would be removed using different lower thr
 ```R
 plotRemoved(processed$documents, lower.thresh=seq(1,200, by=100))
 ```
-
-*Plot of the documents, words, and tokens removed using the specified threshold*
 ![plotRemoved](https://github.com/dondealban/learning-stm/blob/master/outputs/stm-plot-removed.png)
 
 ### C. Estimate
@@ -94,7 +92,7 @@ plot(poliblogPrevFit, type="perspectives", topics=c(7,10))
 
 ### D. Evaluate
 
-##### Search and select model for a fixed number of topics
+###### Search and select model for a fixed number of topics
 The function `selectModel()` assists the user in finding and selecting a model with desirable properties in both semantic coherence and exclusivity dimensions (e.g., models with average scores towards the upper right side of the plot). STM will compare a number of models side by side and will keep the models that do not converge quickly. 
 ```R
 poliblogSelect <- selectModel(out$documents, out$vocab, K=20, prevalence=~rating+s(day),
@@ -127,7 +125,7 @@ plot(storageOutput1)
 ```
 ![plot-manytopics](https://github.com/dondealban/learning-stm/blob/master/outputs/stm-plot-storage-output1.png)
 
-##### Model search across a number of topics 
+###### Model search across a number of topics 
 Alternatively, R can be instructed to figure out the best model automatically defined by exclusivity and semantic coherence for each K (i.e. # of topics). The `searchK()` function uses a data-driven approach to selecting the number of topics. 
 ```R
 kResult <- searchK(out$documents, out$vocab, K=c(7,10), prevalence=~rating+s(day),
@@ -153,11 +151,13 @@ labelTopicsSel <- labelTopics(poliblogPrevFit, c(3,7,20))
 > 	 FREX: oreilli, hanniti, matthew, editor, coverag, journalist, blogger 
 > 	 Lift: adolfo, bandwidth, bikini-clad, blogopsher, bmx, bookshelf, broadkorb 
 > 	 Score: oreilli, media, rove, fox, matthew, drudg, hanniti 
+
 > Topic 7 Top Words:
 > 	 Highest Prob: one, question, hes, even, like, point, doesnt 
 > 	 FREX: exit, vis-avi, see-dubya, messiah, barri, itll, maverick 
 > 	 Lift: --one, -sahab, advanceupd, ahmadinejad-esqu, al-hanooti, anti-iranian, badass 
-> 	 Score: exit, hes, maverick, shes, see-dubya, messiah, gadahn 
+> 	 Score: exit, hes, maverick, shes, see-dubya, messiah, gadahn
+
 > Topic 20 Top Words:
 > 	 Highest Prob: obama, clinton, campaign, hillari, barack, will, said 
 > 	 FREX: clinton, hillari, nafta, obama, wolfson, edward, camp 
@@ -190,7 +190,7 @@ out$meta$rating <- as.factor(out$meta$rating)
 prep <- estimateEffect(1:20 ~ rating+s(day), poliblogPrevFit, meta=out$meta, 
                        uncertainty="Global")
 ```
-##### To see how prevalence of topics differs across values of a categorical covariate
+To see how prevalence of topics differs across values of a categorical covariate:
 ```R
 plot(prep, covariate="rating", topics=c(3, 7, 20), model=poliblogPrevFit, 
      method="difference", cov.value1="Liberal", cov.value2="Conservative",
@@ -200,7 +200,7 @@ plot(prep, covariate="rating", topics=c(3, 7, 20), model=poliblogPrevFit,
 ```
 ![plot-est-effect-cat](https://github.com/dondealban/learning-stm/blob/master/outputs/stm-plot-estimate-effect-categorical.png)
 
-##### To see how prevalence of topics differs across values of a continuous covariate
+To see how prevalence of topics differs across values of a continuous covariate:
 ```R
 plot(prep, "day", method="continuous", topics=20, model=z, printlegend=FALSE, xaxt="n", 
      xlab="Time (2008)")
