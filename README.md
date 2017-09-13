@@ -144,7 +144,25 @@ According to the package vignette, there are a number of ways to interpret the m
 - Estimating relationships between metadata and topics: `estimateEffect()`
 - Estimating topic correlations: `topicCorr()`
 
-
+An example for `labelTopics()` is by listing top words for selected topics such as for #3, #7, and #20.
+```R
+labelTopicsSel <- labelTopics(poliblogPrevFit, c(3,7,20))
+```
+> Topic 3 Top Words:
+ 	 Highest Prob: media, news, time, report, stori, show, press 
+ 	 FREX: oreilli, hanniti, matthew, editor, coverag, journalist, blogger 
+ 	 Lift: adolfo, bandwidth, bikini-clad, blogopsher, bmx, bookshelf, broadkorb 
+ 	 Score: oreilli, media, rove, fox, matthew, drudg, hanniti 
+> Topic 7 Top Words:
+ 	 Highest Prob: one, question, hes, even, like, point, doesnt 
+ 	 FREX: exit, vis-avi, see-dubya, messiah, barri, itll, maverick 
+ 	 Lift: --one, -sahab, advanceupd, ahmadinejad-esqu, al-hanooti, anti-iranian, badass 
+ 	 Score: exit, hes, maverick, shes, see-dubya, messiah, gadahn 
+> Topic 20 Top Words:
+ 	 Highest Prob: obama, clinton, campaign, hillari, barack, will, said 
+ 	 FREX: clinton, hillari, nafta, obama, wolfson, edward, camp 
+ 	 Lift: abcth, ack, amd, argus, asc, bachtel, brawler 
+ 	 Score: obama, hillari, clinton, barack, campaign, senat, wolfson 
 
 
 
