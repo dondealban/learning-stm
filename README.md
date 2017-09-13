@@ -149,20 +149,73 @@ An example for `labelTopics()` is by listing top words for selected topics such 
 labelTopicsSel <- labelTopics(poliblogPrevFit, c(3,7,20))
 ```
 > Topic 3 Top Words:
- 	 Highest Prob: media, news, time, report, stori, show, press 
- 	 FREX: oreilli, hanniti, matthew, editor, coverag, journalist, blogger 
- 	 Lift: adolfo, bandwidth, bikini-clad, blogopsher, bmx, bookshelf, broadkorb 
- 	 Score: oreilli, media, rove, fox, matthew, drudg, hanniti 
+> 	 Highest Prob: media, news, time, report, stori, show, press
+> 	 FREX: oreilli, hanniti, matthew, editor, coverag, journalist, blogger 
+> 	 Lift: adolfo, bandwidth, bikini-clad, blogopsher, bmx, bookshelf, broadkorb 
+> 	 Score: oreilli, media, rove, fox, matthew, drudg, hanniti 
 > Topic 7 Top Words:
- 	 Highest Prob: one, question, hes, even, like, point, doesnt 
- 	 FREX: exit, vis-avi, see-dubya, messiah, barri, itll, maverick 
- 	 Lift: --one, -sahab, advanceupd, ahmadinejad-esqu, al-hanooti, anti-iranian, badass 
- 	 Score: exit, hes, maverick, shes, see-dubya, messiah, gadahn 
+> 	 Highest Prob: one, question, hes, even, like, point, doesnt 
+> 	 FREX: exit, vis-avi, see-dubya, messiah, barri, itll, maverick 
+> 	 Lift: --one, -sahab, advanceupd, ahmadinejad-esqu, al-hanooti, anti-iranian, badass 
+> 	 Score: exit, hes, maverick, shes, see-dubya, messiah, gadahn 
 > Topic 20 Top Words:
- 	 Highest Prob: obama, clinton, campaign, hillari, barack, will, said 
- 	 FREX: clinton, hillari, nafta, obama, wolfson, edward, camp 
- 	 Lift: abcth, ack, amd, argus, asc, bachtel, brawler 
- 	 Score: obama, hillari, clinton, barack, campaign, senat, wolfson 
+> 	 Highest Prob: obama, clinton, campaign, hillari, barack, will, said 
+> 	 FREX: clinton, hillari, nafta, obama, wolfson, edward, camp 
+> 	 Lift: abcth, ack, amd, argus, asc, bachtel, brawler 
+> 	 Score: obama, hillari, clinton, barack, campaign, senat, wolfson 
+
+For `sageLabels()`, this fucntion can be used as a more detailed alternative to `labelTopics()` to display verbose labels that describe topics and topic-covariate groups in depth. An example is shown below for topic #3 out of 20 topics.
+```R
+print(sageLabels(poliblogPrevFit))
+```
+> Topic 3: 
+> 	 Marginal Highest Prob: media, news, time, report, stori, show, press 
+> 	 Marginal FREX: oreilli, hanniti, matthew, editor, coverag, journalist, blogger 
+> 	 Marginal Lift: adolfo, bandwidth, bikini-clad, blogopsher, bmx, bookshelf, broadkorb
+> 	 Marginal Score: amtak-, boozman, cardoza, crenshaw, granger, herger, ks- 
+> 
+> 	 Topic Kappa:  
+> 	 Kappa with Baseline:  
+
+Using `findThoughts()` function reads documents that are highly correlated with the user-specified topics. Object 'thoughts1' contains 3 documents about topic #3 and 'texts=shortdoc' gives just the first 250 words. 
+```R
+thoughts3 <- findThoughts(poliblogPrevFit, texts=shortdoc, n=3, topics=3)$docs[[1]]
+plotQuote(thoughts3, width=40, main="Topic 3")
+```
+![plot-findthoughts](https://github.com/dondealban/learning-stm/blob/master/outputs/stm-plot-find-thoughts3.png)
+
+The `estimateEffect()` function explores how prevalence of topics varies across documents according to document covariates (metadata). First, users must specify the variable that they wish to use for calculating an effect. If there are multiple variables specified in `estimateEffect()`, then all other variables are held at their sample median. These parameters include the expected proportion of a document that belongs to a topic as a function of a covariate, or a first difference type estimate, where topic prevalence for a particular topic is contrasted for two groups (e.g., liberal versus conservative).
+```R
+out$meta$rating <- as.factor(out$meta$rating)
+prep <- estimateEffect(1:20 ~ rating+s(day), poliblogPrevFit, meta=out$meta, 
+                       uncertainty="Global")
+```
+##### To see how prevalence of topics differs across values of a categorical covariate
+```R
+plot(prep, covariate="rating", topics=c(3, 7, 20), model=poliblogPrevFit, 
+     method="difference", cov.value1="Liberal", cov.value2="Conservative",
+     xlab="More Conservative ... More Liberal", main="Effect of Liberal vs. Conservative",
+     xlim=c(-.15,.15), labeltype ="custom", custom.labels=c('Obama', 'Sarah Palin', 
+                                                          'Bush Presidency'))
+```
+![plot-est-effect-cat](https://github.com/dondealban/learning-stm/blob/master/outputs/stm-plot-estimate-effect-categorical.png)
+
+##### To see how prevalence of topics differs across values of a continuous covariate
+```R
+plot(prep, "day", method="continuous", topics=20, model=z, printlegend=FALSE, xaxt="n", 
+     xlab="Time (2008)")
+monthseq <- seq(from=as.Date("2008-01-01"), to=as.Date("2008-12-01"), by="month")
+monthnames <- months(monthseq)
+axis(1, at=as.numeric(monthseq)-min(as.numeric(monthseq)), labels=monthnames)
+```
+![plot-est-effect-cont](https://github.com/dondealban/learning-stm/blob/master/outputs/stm-plot-estimate-effect-continuous.png)
+
+Finally, for `topicCorr()` an STM permits correlations between topics. Positive correlations between topics indicate that both topics are likely to be discussed within a document. A graphical network display shows how closely related topics are to one another (i.e., how likely they are to appear in the same document). This function requires `igraph` R package.
+```R
+mod.out.corr <- topicCorr(poliblogPrevFit)
+plot(mod.out.corr)
+```
+![plot-topiccorr](https://github.com/dondealban/learning-stm/blob/master/outputs/stm-plot-topic-correlations.png)
 
 
 
