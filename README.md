@@ -136,6 +136,16 @@ plot(kResult)
 ```
 ![plot-searchk](https://github.com/dondealban/learning-stm/blob/master/outputs/stm-plot-searchk.png)
 
+### E. Understand
+
+According to the package vignette, there are a number of ways to interpret the model results. These include:
+- Displaying words associated with topics: `labelTopics()`, `sageLabels()`
+- Displaying documents highly associated with particular topics: `findThoughts()`
+- Estimating relationships between metadata and topics: `estimateEffect()`
+- Estimating topic correlations: `topicCorr()`
+
+
+
 
 
 ...to be continued...
